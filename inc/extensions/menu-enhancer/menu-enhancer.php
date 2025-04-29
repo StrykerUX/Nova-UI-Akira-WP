@@ -77,6 +77,9 @@ class Nova_Menu_Enhancer {
     public function register_frontend_assets() {
         // CSS
         wp_enqueue_style('nova-menu-enhancer', NOVA_MENU_ENHANCER_URL . '/assets/css/menu-enhancer.css', array(), NOVA_VERSION);
+        
+        // Load Lucide fix before the theme's main JavaScript
+        wp_enqueue_script('nova-lucide-fix', NOVA_MENU_ENHANCER_URL . '/assets/js/lucide-fix.js', array(), NOVA_VERSION, false);
     }
     
     /**

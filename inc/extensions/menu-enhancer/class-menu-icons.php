@@ -53,6 +53,12 @@ class Nova_Menu_Icons {
         
         // Filter menu items for the sidebar display
         add_filter('wp_get_nav_menu_items', array($this, 'add_icons_to_menu_items'), 10, 3);
+        
+        // Add filter to header.php sidebar menu rendering
+        add_filter('wp_setup_nav_menu_item', array($this, 'setup_nav_menu_item'), 10, 1);
+        
+        // Modify the header.php sidebar menu rendering
+        add_action('after_setup_theme', array($this, 'modify_header_sidebar_menu'));
     }
     
     /**
@@ -136,5 +142,47 @@ class Nova_Menu_Icons {
         }
         
         return $items;
+    }
+    
+
+    
+    /**
+     * Setup menu item with icon data
+     */
+    public function setup_nav_menu_item($menu_item) {
+        $menu_item->icon = get_post_meta($menu_item->ID, $this->meta_key, true);
+        return $menu_item;
+    }
+    
+    /**
+     * Modify the header.php sidebar menu rendering
+     * This function adds a filter to output_theme_menu_item to replace the default icon
+     */
+    public function modify_header_sidebar_menu() {
+        // This hook will run after the theme is fully loaded
+        add_action('wp_head', function() {
+            // Add inline JavaScript to override the default icon behavior
+            ?>
+            <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                // Find all menu items in the sidebar
+                document.querySelectorAll('.side-nav-item').forEach(function(item) {
+                    // Check if this item has a data-icon attribute (we'll add this to the PHP output)
+                    var iconClass = item.getAttribute('data-icon');
+                    if (iconClass) {
+                        // Find the icon element and replace its class
+                        var iconElement = item.querySelector('.menu-icon i');
+                        if (iconElement) {
+                            // Remove all existing ti classes
+                            iconElement.className = '';
+                            // Add the new icon class
+                            iconElement.className = iconClass;
+                        }
+                    }
+                });
+            });
+            </script>
+            <?php
+        });
     }
 }

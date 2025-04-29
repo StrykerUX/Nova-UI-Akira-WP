@@ -79,7 +79,13 @@
                             return $item->menu_item_parent == $parent_item->ID;
                         });
 
-                        echo '<li class="side-nav-item">';
+                        // Check if item has a custom icon
+                        $icon_attr = '';
+                        if (isset($parent_item->icon) && !empty($parent_item->icon)) {
+                            $icon_attr = ' data-icon="' . esc_attr($parent_item->icon) . '"';
+                        }
+
+                        echo '<li class="side-nav-item"' . $icon_attr . '>';
                         if (empty($children)) {
                             echo '<a href="' . esc_url($parent_item->url) . '" class="side-nav-link">';
                             echo '<span class="menu-icon"><i class="ti ti-file"></i></span>';
