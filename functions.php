@@ -9,11 +9,14 @@
  * Ensure jQuery is loaded correctly for our theme
  */
 function nova_jquery_setup() {
-    // Asegurarse de que jQuery se carga correctamente
-    // Es mejor usar el jQuery que viene con WordPress
     if (!is_admin()) {
-        // Eliminamos la configuración personalizada que está causando conflictos
-        // y dejamos que WordPress maneje jQuery normalmente
+        // Deregister the default WordPress jQuery
+        wp_deregister_script('jquery');
+        
+        // Register jQuery nuevamente desde la version que viene con WordPress
+        wp_register_script('jquery', includes_url('/js/jquery/jquery.min.js'), array(), null, false);
+        
+        // Asegurarse de que jQuery se carga en el head, no en el footer
         wp_enqueue_script('jquery');
     }
 }
@@ -94,9 +97,13 @@ function nova_scripts() {
     wp_enqueue_style('nova-style', get_stylesheet_uri(), array(), NOVA_VERSION);
 
     // jQuery (ya registrado en nova_jquery_setup)
+    wp_enqueue_script('jquery');
 
-    // Lucide Icons - Sin dependencias para evitar conflictos
+    // Lucide Icons - Cargar primero sin dependencias para evitar problemas
     wp_enqueue_script('lucide-icons', 'https://unpkg.com/lucide@latest/dist/umd/lucide.min.js', array(), null, true);
+    
+    // Script de inicialización de iconos (independiente de jQuery)
+    wp_enqueue_script('nova-icons-fix', NOVA_TEMPLATE_URI . '/assets/js/nova-icons-fix.js', array('lucide-icons'), NOVA_VERSION, true);
 
     // Bootstrap Bundle (incluye Popper)
     wp_enqueue_script('bootstrap-bundle', NOVA_TEMPLATE_URI . '/assets/js/bootstrap.bundle.min.js', array('jquery'), NOVA_VERSION, true);
@@ -109,7 +116,7 @@ function nova_scripts() {
     wp_enqueue_script('nova-theme', NOVA_TEMPLATE_URI . '/assets/js/theme.js', array('jquery', 'bootstrap-bundle'), NOVA_VERSION, true);
 
     // Main JS - Asegurarse de que depende de jQuery
-    wp_enqueue_script('nova-app', NOVA_TEMPLATE_URI . '/assets/js/app.js', array('jquery', 'bootstrap-bundle', 'simplebar', 'lucide-icons', 'nova-layout', 'nova-theme'), NOVA_VERSION, true);
+    wp_enqueue_script('nova-app', NOVA_TEMPLATE_URI . '/assets/js/app.js', array('jquery', 'bootstrap-bundle', 'simplebar', 'lucide-icons', 'nova-layout', 'nova-theme', 'nova-icons-fix'), NOVA_VERSION, true);
 
     // Comment Reply
     if (is_singular() && comments_open() && get_option('thread_comments')) {
