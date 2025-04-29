@@ -6,6 +6,12 @@
 (function($) {
     "use strict";
     
+    // Inicialización inmediata de Lucide Icons para garantizar que los iconos se muestren
+    // incluso si hay problemas con jQuery
+    if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+        lucide.createIcons();
+    }
+    
     class App {
         initComponents() {
             // Check if lucide is defined before using it
@@ -974,10 +980,28 @@
     };
 
     // Inicializar cuando el documento esté listo
-    $(document).ready(function() {
-        (new App).init();
-        (new ThemeCustomizer).init();
-        customJS();
-    });
+    // Usamos una forma compatible con cualquier versión de jQuery
+    function onDocumentReady() {
+        try {
+            (new App).init();
+            (new ThemeCustomizer).init();
+            customJS();
+        } catch (error) {
+            console.error('Error inicializando la aplicación:', error);
+            
+            // Si hay un error, al menos aseguramos que los iconos se inicializan
+            if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                lucide.createIcons();
+            }
+        }
+    }
+    
+    // Comprobamos si jQuery está disponible y funciona correctamente
+    if (typeof jQuery !== 'undefined') {
+        jQuery(document).ready(onDocumentReady);
+    } else {
+        // Fallback a JavaScript puro si jQuery no está disponible
+        document.addEventListener('DOMContentLoaded', onDocumentReady);
+    }
 
-})(jQuery);
+})(typeof jQuery !== 'undefined' ? jQuery : function(){});

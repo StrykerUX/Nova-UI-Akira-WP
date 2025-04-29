@@ -9,12 +9,12 @@
  * Ensure jQuery is loaded correctly for our theme
  */
 function nova_jquery_setup() {
-    // Asegurarse de que jquery se carga en el footer con dependencia jquery-core
-    // Esto evita conflictos con otras versiones de jQuery
+    // Asegurarse de que jQuery se carga correctamente
+    // Es mejor usar el jQuery que viene con WordPress
     if (!is_admin()) {
-        wp_deregister_script('jquery-migrate');
-        wp_register_script('jquery-migrate', includes_url('/js/jquery/jquery-migrate.min.js'), array('jquery-core'), null, true);
-        wp_enqueue_script('jquery', false, array('jquery-core', 'jquery-migrate'), null, true);
+        // Eliminamos la configuración personalizada que está causando conflictos
+        // y dejamos que WordPress maneje jQuery normalmente
+        wp_enqueue_script('jquery');
     }
 }
 add_action('wp_enqueue_scripts', 'nova_jquery_setup', 1);
@@ -84,6 +84,7 @@ function nova_scripts() {
 
     // Icon CSS
     wp_enqueue_style('tabler-icons', NOVA_TEMPLATE_URI . '/assets/css/tabler-icons.min.css', array(), NOVA_VERSION);
+    wp_enqueue_style('custom-icons-fix', NOVA_TEMPLATE_URI . '/assets/css/custom-icons-fix.css', array('tabler-icons'), NOVA_VERSION);
     
     // Theme CSS
     wp_enqueue_style('nova-app', NOVA_TEMPLATE_URI . '/assets/css/app.min.css', array('bootstrap'), NOVA_VERSION);
@@ -94,7 +95,7 @@ function nova_scripts() {
 
     // jQuery (ya registrado en nova_jquery_setup)
 
-    // Lucide Icons
+    // Lucide Icons - Sin dependencias para evitar conflictos
     wp_enqueue_script('lucide-icons', 'https://unpkg.com/lucide@latest/dist/umd/lucide.min.js', array(), null, true);
 
     // Bootstrap Bundle (incluye Popper)
