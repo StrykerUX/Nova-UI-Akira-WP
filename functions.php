@@ -92,7 +92,7 @@ function nova_scripts() {
     wp_enqueue_script('nova-theme', NOVA_TEMPLATE_URI . '/assets/js/theme.js', array('jquery'), NOVA_VERSION, true);
 
     // Main JS
-    wp_enqueue_script('nova-app', NOVA_TEMPLATE_URI . '/assets/js/app.js', array('jquery', 'nova-theme', 'nova-layout'), NOVA_VERSION, true);
+    wp_enqueue_script('nova-app', NOVA_TEMPLATE_URI . '/assets/js/app.js', array('jquery', 'bootstrap-bundle', 'simplebar'), NOVA_VERSION, true);
 
     // Comment Reply
     if (is_singular() && comments_open() && get_option('thread_comments')) {
