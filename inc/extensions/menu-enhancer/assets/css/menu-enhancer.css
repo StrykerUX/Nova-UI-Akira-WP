@@ -21,3 +21,27 @@
 .topbar-link i {
     vertical-align: middle;
 }
+
+/* Topbar icons menu styles */
+.topbar-item .topbar-link.btn-icon {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.topbar-item .topbar-link.btn-icon i {
+    font-size: 18px;
+}
+
+/* Badge for notification button (optional) */
+.topbar-item .topbar-link.btn-icon .badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    padding: 3px 6px;
+    font-size: 10px;
+}

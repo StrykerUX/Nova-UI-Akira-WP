@@ -58,6 +58,8 @@ class Nova_Menu_Enhancer {
         require_once NOVA_MENU_ENHANCER_DIR . '/class-menu-icons.php';
         require_once NOVA_MENU_ENHANCER_DIR . '/class-user-menu-walker.php';
         require_once NOVA_MENU_ENHANCER_DIR . '/class-user-menu.php';
+        require_once NOVA_MENU_ENHANCER_DIR . '/class-topbar-icons-walker.php';
+        require_once NOVA_MENU_ENHANCER_DIR . '/class-topbar-icons.php';
         
         // Load admin files on admin pages only
         if (is_admin()) {

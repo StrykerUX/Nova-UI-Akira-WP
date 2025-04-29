@@ -186,6 +186,9 @@
                     </button>
                 </div>
 
+                <!-- Topbar Icons Menu -->
+                <?php Nova_Topbar_Icons::render_topbar_icons(); ?>
+                
                 <!-- Light/Dark Mode Button -->
                 <div class="topbar-item d-none d-sm-flex">
                     <button class="topbar-link btn btn-outline-primary btn-icon" id="light-dark-mode" type="button">
