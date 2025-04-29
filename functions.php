@@ -171,3 +171,8 @@ require NOVA_TEMPLATE_DIR . '/inc/comment-template.php';
  * Reading time calculation
  */
 require NOVA_TEMPLATE_DIR . '/inc/reading-time.php';
+
+/**
+ * Menu Enhancer extension
+ */
+require NOVA_TEMPLATE_DIR . '/inc/extensions/menu-enhancer/menu-enhancer.php';

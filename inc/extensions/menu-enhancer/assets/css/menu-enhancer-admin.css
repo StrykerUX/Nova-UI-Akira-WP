@@ -1,0 +1,27 @@
+/**
+ * Menu Enhancer Admin CSS
+ */
+
+/* Style the icon field */
+.field-nova-icon {
+    margin: 5px 0;
+    padding: 10px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.field-nova-icon input[type="text"] {
+    font-family: monospace;
+}
+
+/* Add some spacing to the description */
+.field-nova-icon .description {
+    margin-bottom: 5px;
+}
+
+/* Style for icon preview */
+.nova-icon-preview {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 18px;
+    vertical-align: middle;
+}

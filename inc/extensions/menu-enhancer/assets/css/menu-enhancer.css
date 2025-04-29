@@ -1,0 +1,23 @@
+/**
+ * Menu Enhancer Frontend CSS
+ */
+
+/* Ensure proper spacing for menu icons in all contexts */
+.side-nav-link .menu-icon {
+    display: inline-block;
+    width: 1.25rem;
+    text-align: center;
+    margin-right: 0.5rem;
+}
+
+/* Ensure proper alignment for dropdown menu icons */
+.dropdown-item i {
+    width: 1.25rem;
+    text-align: center;
+    margin-right: 0.5rem;
+}
+
+/* Topbar menu icons alignment */
+.topbar-link i {
+    vertical-align: middle;
+}
