@@ -5,9 +5,44 @@
 (function() {
     'use strict';
     
+    // Definición de una función de ayuda para jQuery
+    // Esta función ayudará cuando jQuery no esté disponible o tenga problemas
+    function definejQuery() {
+        if (typeof window.jQuery === 'undefined') {
+            console.log("jQuery no detectado, usando fallback");
+            window.jQuery = window.$ = function() {
+                // Fallback simple para jQuery cuando no está disponible
+                var obj = {
+                    ready: function(fn) { 
+                        if (document.readyState !== 'loading') {
+                            fn();
+                        } else {
+                            document.addEventListener('DOMContentLoaded', fn);
+                        }
+                        return obj;
+                    },
+                    on: function() { return obj; },
+                    each: function() { return obj; },
+                    find: function() { return obj; },
+                    closest: function() { return obj; },
+                    length: 0,
+                    parent: function() { return obj; },
+                    parents: function() { return obj; }
+                };
+                return obj;
+            };
+        } else if (typeof window.$ === 'undefined') {
+            console.log("$ no detectado, asignando desde jQuery");
+            window.$ = window.jQuery;
+        }
+    }
+    
     // Función para inicializar los iconos
     function initializeIcons() {
         console.log("Inicializando iconos de forma independiente...");
+        
+        // Verificar si jQuery está correctamente configurado
+        definejQuery();
         
         // Inicializar Lucide Icons si está disponible
         if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {

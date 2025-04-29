@@ -10,17 +10,27 @@
  */
 function nova_jquery_setup() {
     if (!is_admin()) {
-        // Deregister the default WordPress jQuery
+        // Solo manipulamos jQuery en el frontend, no en el admin
         wp_deregister_script('jquery');
-        
-        // Register jQuery nuevamente desde la version que viene con WordPress
         wp_register_script('jquery', includes_url('/js/jquery/jquery.min.js'), array(), null, false);
-        
-        // Asegurarse de que jQuery se carga en el head, no en el footer
         wp_enqueue_script('jquery');
     }
 }
 add_action('wp_enqueue_scripts', 'nova_jquery_setup', 1);
+
+/**
+ * Enqueue scripts for admin area
+ */
+function nova_admin_scripts() {
+    // Registrar y cargar el script de iconos en el admin
+    wp_enqueue_script('lucide-icons-admin', 'https://unpkg.com/lucide@latest/dist/umd/lucide.min.js', array(), null, true);
+    wp_enqueue_script('nova-icons-fix-admin', NOVA_TEMPLATE_URI . '/assets/js/nova-icons-fix.js', array('lucide-icons-admin'), NOVA_VERSION, true);
+    
+    // Añadir estilos para los iconos en el admin
+    wp_enqueue_style('tabler-icons-admin', NOVA_TEMPLATE_URI . '/assets/css/tabler-icons.min.css', array(), NOVA_VERSION);
+    wp_enqueue_style('custom-icons-fix-admin', NOVA_TEMPLATE_URI . '/assets/css/custom-icons-fix.css', array('tabler-icons-admin'), NOVA_VERSION);
+}
+add_action('admin_enqueue_scripts', 'nova_admin_scripts');
 
 // Define constants
 define('NOVA_VERSION', '1.0.0');
