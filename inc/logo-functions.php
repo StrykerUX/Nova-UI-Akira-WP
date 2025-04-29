@@ -5,6 +5,40 @@
  * @package Nova_UI_Akira
  */
 
+// Check if the function already exists to prevent redeclaration
+if (!function_exists('nova_get_custom_logo')) {
+    /**
+     * Compatibility function for legacy code that might be calling this function
+     * This is to prevent the fatal error
+     *
+     * @param string $mode 'light' or 'dark'
+     * @param string $size 'expanded' or 'collapsed'
+     * @return string HTML for the logo
+     */
+    function nova_get_custom_logo($mode = 'light', $size = 'expanded') {
+        // Use the theme_logo function if it exists
+        if (function_exists('nova_get_theme_logo')) {
+            return nova_get_theme_logo($size, $mode);
+        }
+        
+        // Fallback implementation
+        if (has_custom_logo()) {
+            $custom_logo_id = get_theme_mod('custom_logo');
+            $logo = wp_get_attachment_image($custom_logo_id, 'full', false, array(
+                'class' => 'custom-logo',
+                'alt'   => get_bloginfo('name'),
+            ));
+            return $logo;
+        } else {
+            if ($size === 'expanded') {
+                return '<span class="logo-text">' . get_bloginfo('name') . '</span>';
+            } else {
+                return '<span class="logo-sm text-center">' . esc_html(substr(get_bloginfo('name'), 0, 1)) . '</span>';
+            }
+        }
+    }
+}
+
 /**
  * Get the HTML for the advanced logo
  * This handles light/dark modes and expanded/collapsed states
@@ -37,7 +71,7 @@ function nova_get_advanced_logo() {
         ));
     }
     
-    // Dark Mode Logos
+    // Create Light Mode Expanded Container
     $html .= '<div class="logo-lg">';
     if ($light_expanded_logo) {
         $html .= $light_expanded_logo;
@@ -47,6 +81,7 @@ function nova_get_advanced_logo() {
     }
     $html .= '</div>';
     
+    // Create Light Mode Collapsed Container
     $html .= '<div class="logo-sm">';
     if ($light_collapsed_logo) {
         $html .= $light_collapsed_logo;
@@ -84,6 +119,7 @@ function nova_get_advanced_logo() {
         ));
     }
     
+    // Create Dark Mode Expanded Container
     $html .= '<div class="logo-lg">';
     if ($dark_expanded_logo) {
         $html .= $dark_expanded_logo;
@@ -96,6 +132,7 @@ function nova_get_advanced_logo() {
     }
     $html .= '</div>';
     
+    // Create Dark Mode Collapsed Container
     $html .= '<div class="logo-sm">';
     if ($dark_collapsed_logo) {
         $html .= $dark_collapsed_logo;
@@ -129,13 +166,3 @@ function nova_enqueue_logo_styles() {
     wp_enqueue_style('nova-logo-styles', get_template_directory_uri() . '/assets/css/logo-styles.css', array(), NOVA_VERSION);
 }
 add_action('wp_enqueue_scripts', 'nova_enqueue_logo_styles');
-
-/**
- * Register the logo functions file in the theme
- */
-function nova_include_logo_functions() {
-    // Include this file in functions.php
-    if (!function_exists('nova_get_advanced_logo')) {
-        require_once get_template_directory() . '/inc/logo-functions.php';
-    }
-}

@@ -7,12 +7,13 @@
 
 /**
  * Get the appropriate logo based on current mode and sidebar state
+ * Note: Function renamed to avoid conflicts with existing code
  *
  * @param string $state 'expanded' or 'collapsed'
  * @param string $mode 'light' or 'dark'
  * @return string HTML markup for the logo
  */
-function nova_get_custom_logo($state = 'expanded', $mode = 'light') {
+function nova_get_theme_logo($state = 'expanded', $mode = 'light') {
     $logo_html = '';
     $setting_name = 'nova_logo_' . $mode . '_' . $state;
     $logo_id = get_theme_mod($setting_name);
