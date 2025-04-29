@@ -1,17 +1,3 @@
-/**
- * Ensure jQuery is loaded correctly for our theme
- */
-function nova_jquery_setup() {
-    // Asegurarse de que jquery se carga en el footer con dependencia jquery-core
-    // Esto evita conflictos con otras versiones de jQuery
-    if (!is_admin()) {
-        wp_deregister_script('jquery-migrate');
-        wp_register_script('jquery-migrate', includes_url('/js/jquery/jquery-migrate.min.js'), array('jquery-core'), null, true);
-        wp_enqueue_script('jquery', false, array('jquery-core', 'jquery-migrate'), null, true);
-    }
-}
-add_action('wp_enqueue_scripts', 'nova_jquery_setup', 1);
-
 <?php
 /**
  * Theme functions and definitions
