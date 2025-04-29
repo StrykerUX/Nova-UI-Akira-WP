@@ -1,9 +1,37 @@
+/**
+ * Ensure jQuery is loaded correctly for our theme
+ */
+function nova_jquery_setup() {
+    // Asegurarse de que jquery se carga en el footer con dependencia jquery-core
+    // Esto evita conflictos con otras versiones de jQuery
+    if (!is_admin()) {
+        wp_deregister_script('jquery-migrate');
+        wp_register_script('jquery-migrate', includes_url('/js/jquery/jquery-migrate.min.js'), array('jquery-core'), null, true);
+        wp_enqueue_script('jquery', false, array('jquery-core', 'jquery-migrate'), null, true);
+    }
+}
+add_action('wp_enqueue_scripts', 'nova_jquery_setup', 1);
+
 <?php
 /**
  * Theme functions and definitions
  *
  * @package Nova_UI_Akira
  */
+
+/**
+ * Ensure jQuery is loaded correctly for our theme
+ */
+function nova_jquery_setup() {
+    // Asegurarse de que jquery se carga en el footer con dependencia jquery-core
+    // Esto evita conflictos con otras versiones de jQuery
+    if (!is_admin()) {
+        wp_deregister_script('jquery-migrate');
+        wp_register_script('jquery-migrate', includes_url('/js/jquery/jquery-migrate.min.js'), array('jquery-core'), null, true);
+        wp_enqueue_script('jquery', false, array('jquery-core', 'jquery-migrate'), null, true);
+    }
+}
+add_action('wp_enqueue_scripts', 'nova_jquery_setup', 1);
 
 // Define constants
 define('NOVA_VERSION', '1.0.0');
@@ -78,24 +106,23 @@ function nova_scripts() {
     // Main Theme Stylesheet
     wp_enqueue_style('nova-style', get_stylesheet_uri(), array(), NOVA_VERSION);
 
-    // jQuery (already included with WordPress)
-    wp_enqueue_script('jquery');
-
-    // Bootstrap Bundle
-    wp_enqueue_script('bootstrap-bundle', NOVA_TEMPLATE_URI . '/assets/js/bootstrap.bundle.min.js', array('jquery'), NOVA_VERSION, true);
+    // jQuery (ya registrado en nova_jquery_setup)
 
     // Lucide Icons
     wp_enqueue_script('lucide-icons', 'https://unpkg.com/lucide@latest/dist/umd/lucide.min.js', array(), null, true);
 
+    // Bootstrap Bundle (incluye Popper)
+    wp_enqueue_script('bootstrap-bundle', NOVA_TEMPLATE_URI . '/assets/js/bootstrap.bundle.min.js', array('jquery'), NOVA_VERSION, true);
+
     // Simplebar
-    wp_enqueue_script('simplebar', NOVA_TEMPLATE_URI . '/assets/js/simplebar.min.js', array(), NOVA_VERSION, true);
+    wp_enqueue_script('simplebar', NOVA_TEMPLATE_URI . '/assets/js/simplebar.min.js', array('jquery'), NOVA_VERSION, true);
 
     // Theme JS
-    wp_enqueue_script('nova-layout', NOVA_TEMPLATE_URI . '/assets/js/layout.js', array('jquery'), NOVA_VERSION, true);
-    wp_enqueue_script('nova-theme', NOVA_TEMPLATE_URI . '/assets/js/theme.js', array('jquery'), NOVA_VERSION, true);
+    wp_enqueue_script('nova-layout', NOVA_TEMPLATE_URI . '/assets/js/layout.js', array('jquery', 'bootstrap-bundle'), NOVA_VERSION, true);
+    wp_enqueue_script('nova-theme', NOVA_TEMPLATE_URI . '/assets/js/theme.js', array('jquery', 'bootstrap-bundle'), NOVA_VERSION, true);
 
-    // Main JS
-    wp_enqueue_script('nova-app', NOVA_TEMPLATE_URI . '/assets/js/app.js', array('jquery', 'bootstrap-bundle', 'simplebar'), NOVA_VERSION, true);
+    // Main JS - Asegurarse de que depende de jQuery
+    wp_enqueue_script('nova-app', NOVA_TEMPLATE_URI . '/assets/js/app.js', array('jquery', 'bootstrap-bundle', 'simplebar', 'lucide-icons', 'nova-layout', 'nova-theme'), NOVA_VERSION, true);
 
     // Comment Reply
     if (is_singular() && comments_open() && get_option('thread_comments')) {
