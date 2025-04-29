@@ -6,6 +6,48 @@
  */
 
 /**
+ * Get the appropriate logo based on current mode and sidebar state
+ *
+ * @param string $state 'expanded' or 'collapsed'
+ * @param string $mode 'light' or 'dark'
+ * @return string HTML markup for the logo
+ */
+function nova_get_custom_logo($state = 'expanded', $mode = 'light') {
+    $logo_html = '';
+    $setting_name = 'nova_logo_' . $mode . '_' . $state;
+    $logo_id = get_theme_mod($setting_name);
+    
+    if ($logo_id) {
+        // We have a custom logo for this state and mode
+        $logo_attr = array(
+            'class' => 'custom-logo logo-' . $state,
+            'loading' => 'lazy',
+        );
+        
+        $logo_html = wp_get_attachment_image($logo_id, 'full', false, $logo_attr);
+    } else {
+        // Fallback to WordPress custom logo
+        if (has_custom_logo()) {
+            if ($state == 'expanded') {
+                $logo_html = get_custom_logo();
+            } else {
+                // For collapsed state, get just the first letter of the site name
+                $logo_html = '<span class="logo-sm text-center">' . esc_html(substr(get_bloginfo('name'), 0, 1)) . '</span>';
+            }
+        } else {
+            // No logo at all, use text
+            if ($state == 'expanded') {
+                $logo_html = '<span class="logo-lg">' . get_bloginfo('name') . '</span>';
+            } else {
+                $logo_html = '<span class="logo-sm text-center">' . esc_html(substr(get_bloginfo('name'), 0, 1)) . '</span>';
+            }
+        }
+    }
+    
+    return $logo_html;
+}
+
+/**
  * Adds custom classes to the array of body classes.
  *
  * @param array $classes Classes for the body element.

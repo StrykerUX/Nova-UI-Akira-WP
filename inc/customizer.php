@@ -32,6 +32,95 @@ function nova_customize_register($wp_customize) {
         );
     }
 
+    // Advanced Logo Options Section
+    $wp_customize->add_section('nova_logo_options', array(
+        'title'       => __('Advanced Logo Options', 'nova-ui-akira'),
+        'description' => __('Upload different logos for light/dark mode and expanded/collapsed sidebar.', 'nova-ui-akira'),
+        'priority'    => 25,
+    ));
+
+    // Light Mode - Expanded Logo
+    $wp_customize->add_setting('nova_logo_light_expanded', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Cropped_Image_Control($wp_customize, 'nova_logo_light_expanded', array(
+        'label'       => __('Light Mode - Expanded Logo', 'nova-ui-akira'),
+        'description' => __('Upload a logo for light mode when sidebar is expanded. Recommended size: 200x50px', 'nova-ui-akira'),
+        'section'     => 'nova_logo_options',
+        'settings'    => 'nova_logo_light_expanded',
+        'width'       => 200,
+        'height'      => 50,
+        'flex_width'  => true,
+        'flex_height' => true,
+    )));
+
+    // Light Mode - Collapsed Logo
+    $wp_customize->add_setting('nova_logo_light_collapsed', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Cropped_Image_Control($wp_customize, 'nova_logo_light_collapsed', array(
+        'label'       => __('Light Mode - Collapsed Logo', 'nova-ui-akira'),
+        'description' => __('Upload a smaller logo for light mode when sidebar is collapsed. Recommended size: 50x50px', 'nova-ui-akira'),
+        'section'     => 'nova_logo_options',
+        'settings'    => 'nova_logo_light_collapsed',
+        'width'       => 50,
+        'height'      => 50,
+        'flex_width'  => true,
+        'flex_height' => true,
+    )));
+
+    // Dark Mode - Expanded Logo
+    $wp_customize->add_setting('nova_logo_dark_expanded', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Cropped_Image_Control($wp_customize, 'nova_logo_dark_expanded', array(
+        'label'       => __('Dark Mode - Expanded Logo', 'nova-ui-akira'),
+        'description' => __('Upload a logo for dark mode when sidebar is expanded. Recommended size: 200x50px', 'nova-ui-akira'),
+        'section'     => 'nova_logo_options',
+        'settings'    => 'nova_logo_dark_expanded',
+        'width'       => 200,
+        'height'      => 50,
+        'flex_width'  => true,
+        'flex_height' => true,
+    )));
+
+    // Dark Mode - Collapsed Logo
+    $wp_customize->add_setting('nova_logo_dark_collapsed', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Cropped_Image_Control($wp_customize, 'nova_logo_dark_collapsed', array(
+        'label'       => __('Dark Mode - Collapsed Logo', 'nova-ui-akira'),
+        'description' => __('Upload a smaller logo for dark mode when sidebar is collapsed. Recommended size: 50x50px', 'nova-ui-akira'),
+        'section'     => 'nova_logo_options',
+        'settings'    => 'nova_logo_dark_collapsed',
+        'width'       => 50,
+        'height'      => 50,
+        'flex_width'  => true,
+        'flex_height' => true,
+    )));
+
+    // Show Logo in Topbar?
+    $wp_customize->add_setting('nova_show_logo_topbar', array(
+        'default'           => true,
+        'sanitize_callback' => 'nova_sanitize_checkbox',
+    ));
+
+    $wp_customize->add_control('nova_show_logo_topbar', array(
+        'type'     => 'checkbox',
+        'label'    => __('Show Logo in Topbar', 'nova-ui-akira'),
+        'description' => __('Enable to show the logo in the top navigation bar.', 'nova-ui-akira'),
+        'section'  => 'nova_logo_options',
+        'settings' => 'nova_show_logo_topbar',
+    ));
+
     // Theme Colors Section
     $wp_customize->add_section('nova_colors', array(
         'title'    => __('Theme Colors', 'nova-ui-akira'),
@@ -107,6 +196,13 @@ function nova_customize_register($wp_customize) {
     ));
 }
 add_action('customize_register', 'nova_customize_register');
+
+/**
+ * Sanitize checkbox field
+ */
+function nova_sanitize_checkbox($input) {
+    return ( ( isset( $input ) && true == $input ) ? true : false );
+}
 
 /**
  * Sanitize select field
@@ -190,4 +286,35 @@ function nova_hex_to_rgb($hex) {
     $rgb[] = hexdec(substr($hex, 4, 2));
     
     return $rgb;
+}
+
+/**
+ * Helper function to get the advanced logo HTML
+ */
+function nova_get_logo($location, $size) {
+    $mode = 'light'; // Default to light mode
+    if (is_callable('wp_get_global_styles') && wp_get_global_styles(array('prefrence' => 'dark')) === 'dark') {
+        $mode = 'dark';
+    }
+    
+    $html = '';
+    $setting_name = 'nova_logo_' . $mode . '_' . $size;
+    $logo_id = get_theme_mod($setting_name, '');
+    
+    if ($logo_id) {
+        $logo_img = wp_get_attachment_image($logo_id, 'full', false, array(
+            'class' => 'custom-logo custom-logo-' . $size,
+            'alt' => get_bloginfo('name')
+        ));
+        $html = $logo_img;
+    } else {
+        // Fall back to text if no logo
+        if ($size === 'expanded') {
+            $html = '<span class="logo-text">' . get_bloginfo('name') . '</span>';
+        } else {
+            $html = '<span class="logo-sm text-center">' . esc_html(substr(get_bloginfo('name'), 0, 1)) . '</span>';
+        }
+    }
+    
+    return $html;
 }

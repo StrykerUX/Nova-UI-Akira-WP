@@ -1,0 +1,161 @@
+/**
+ * Advanced Logo Styles for Nova UI Akira Theme
+ */
+
+/* Base Logo Container */
+.logo {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    text-decoration: none;
+    transition: all 0.2s;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* Logo Mode Containers */
+.logo-light, 
+.logo-dark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* Hide dark mode logos by default (light mode is visible) */
+.logo-dark {
+    display: none;
+}
+
+/* Show dark mode logos in dark mode */
+html[data-bs-theme="dark"] .logo-light {
+    display: none;
+}
+
+html[data-bs-theme="dark"] .logo-dark {
+    display: flex;
+}
+
+/* Logo Size Variants */
+.logo-lg, 
+.logo-sm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Hide small logos by default (expanded state shows large logos) */
+.logo-sm {
+    display: none;
+}
+
+/* Expanded State Styles */
+html[data-sidenav-size="default"] .sidenav-menu .logo .logo-lg,
+html[data-sidenav-size="full"] .sidenav-menu .logo .logo-lg,
+html[data-sidenav-size="fullscreen"] .sidenav-menu .logo .logo-lg {
+    display: flex;
+}
+
+html[data-sidenav-size="default"] .sidenav-menu .logo .logo-sm,
+html[data-sidenav-size="full"] .sidenav-menu .logo .logo-sm,
+html[data-sidenav-size="fullscreen"] .sidenav-menu .logo .logo-sm {
+    display: none;
+}
+
+/* Collapsed State Styles */
+html[data-sidenav-size="condensed"] .sidenav-menu .logo .logo-sm,
+html[data-sidenav-size="sm-hover"] .sidenav-menu .logo .logo-sm,
+html[data-sidenav-size="sm-hover-active"] .sidenav-menu .logo .logo-sm {
+    display: flex;
+}
+
+html[data-sidenav-size="condensed"] .sidenav-menu .logo .logo-lg,
+html[data-sidenav-size="sm-hover"] .sidenav-menu .logo .logo-lg,
+html[data-sidenav-size="sm-hover-active"] .sidenav-menu .logo .logo-lg {
+    display: none;
+}
+
+/* Image Sizing */
+.logo img.custom-logo {
+    max-height: 100%;
+    width: auto;
+    transition: all 0.2s;
+}
+
+.logo-lg img.custom-logo {
+    max-height: var(--bs-logo-lg-height);
+}
+
+.logo-sm img.custom-logo {
+    max-height: var(--bs-logo-sm-height);
+    max-width: var(--bs-logo-sm-height);
+}
+
+/* Topbar Logo Styles */
+.app-topbar .logo .logo-lg {
+    display: flex;
+}
+
+.app-topbar .logo .logo-sm {
+    display: none;
+}
+
+/* Mobile Topbar Logo Styles */
+@media (max-width: 767.98px) {
+    .app-topbar .logo .logo-lg {
+        display: none;
+    }
+    .app-topbar .logo .logo-sm {
+        display: flex;
+    }
+}
+
+/* Text Logo Styles */
+.logo-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.logo-sm .logo-sm.text-center {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--bs-logo-sm-height);
+    height: var(--bs-logo-sm-height);
+    line-height: var(--bs-logo-sm-height);
+    text-align: center;
+    background-color: var(--bs-primary);
+    color: #fff;
+    border-radius: 50%;
+    font-weight: 600;
+}
+
+/* Fix for WordPress default custom logo markup */
+.custom-logo-link {
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Make sure fixed logo sizes don't break layout */
+.sidenav-menu .logo {
+    padding: 1rem;
+    max-height: var(--bs-topbar-height);
+    min-height: 50px;
+}
+
+/* Ensure no overflow */
+.logo-container {
+    overflow: hidden;
+    height: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+}

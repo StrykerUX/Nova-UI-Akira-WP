@@ -25,23 +25,20 @@
 
         <!-- Brand Logo -->
         <a href="<?php echo esc_url(home_url('/')); ?>" class="logo">
-            <span class="logo-light">
-                <?php if (has_custom_logo()) : ?>
-                    <?php the_custom_logo(); ?>
-                <?php else : ?>
-                    <span class="logo-lg"><?php bloginfo('name'); ?></span>
-                    <span class="logo-sm text-center"><?php echo esc_html(substr(get_bloginfo('name'), 0, 1)); ?></span>
-                <?php endif; ?>
-            </span>
-
-            <span class="logo-dark">
-                <?php if (has_custom_logo()) : ?>
-                    <?php the_custom_logo(); ?>
-                <?php else : ?>
-                    <span class="logo-lg"><?php bloginfo('name'); ?></span>
-                    <span class="logo-sm text-center"><?php echo esc_html(substr(get_bloginfo('name'), 0, 1)); ?></span>
-                <?php endif; ?>
-            </span>
+            <?php 
+            // Use our advanced logo system
+            if (function_exists('nova_get_advanced_logo')) {
+                echo nova_get_advanced_logo();
+            } else {
+                // Fallback to standard WordPress logo
+                if (has_custom_logo()) {
+                    the_custom_logo();
+                } else {
+                    echo '<span class="logo-light"><span class="logo-lg">' . get_bloginfo('name') . '</span></span>';
+                    echo '<span class="logo-sm text-center">' . esc_html(substr(get_bloginfo('name'), 0, 1)) . '</span>';
+                }
+            }
+            ?>
         </a>
 
         <!-- Sidebar Hover Menu Toggle Button -->
@@ -128,26 +125,25 @@
         <div class="page-container topbar-menu">
             <div class="d-flex align-items-center gap-2">
 
-                <!-- Brand Logo -->
+                <?php if (get_theme_mod('nova_show_logo_topbar', true)) : ?>
+                <!-- Brand Logo in Topbar -->
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="logo">
-                    <span class="logo-light">
-                        <?php if (has_custom_logo()) : ?>
-                            <?php the_custom_logo(); ?>
-                        <?php else : ?>
-                            <span class="logo-lg"><?php bloginfo('name'); ?></span>
-                            <span class="logo-sm"><?php echo esc_html(substr(get_bloginfo('name'), 0, 1)); ?></span>
-                        <?php endif; ?>
-                    </span>
-
-                    <span class="logo-dark">
-                        <?php if (has_custom_logo()) : ?>
-                            <?php the_custom_logo(); ?>
-                        <?php else : ?>
-                            <span class="logo-lg"><?php bloginfo('name'); ?></span>
-                            <span class="logo-sm"><?php echo esc_html(substr(get_bloginfo('name'), 0, 1)); ?></span>
-                        <?php endif; ?>
-                    </span>
+                    <?php 
+                    // Use our advanced logo system
+                    if (function_exists('nova_get_advanced_logo')) {
+                        echo nova_get_advanced_logo();
+                    } else {
+                        // Fallback to standard WordPress logo
+                        if (has_custom_logo()) {
+                            the_custom_logo();
+                        } else {
+                            echo '<span class="logo-light"><span class="logo-lg">' . get_bloginfo('name') . '</span></span>';
+                            echo '<span class="logo-sm text-center">' . esc_html(substr(get_bloginfo('name'), 0, 1)) . '</span>';
+                        }
+                    }
+                    ?>
                 </a>
+                <?php endif; ?>
 
                 <!-- Sidebar Menu Toggle Button -->
                 <button class="sidenav-toggle-button btn btn-secondary btn-icon">
@@ -187,7 +183,9 @@
                 </div>
 
                 <!-- Topbar Icons Menu -->
-                <?php Nova_Topbar_Icons::render_topbar_icons(); ?>
+                <?php if (class_exists('Nova_Topbar_Icons')) : ?>
+                    <?php Nova_Topbar_Icons::render_topbar_icons(); ?>
+                <?php endif; ?>
                 
                 <!-- Light/Dark Mode Button -->
                 <div class="topbar-item d-none d-sm-flex">
@@ -208,7 +206,21 @@
                             <i class="ti ti-chevron-down d-none d-lg-block align-middle ms-2"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
-                            <?php Nova_User_Menu::render_user_menu(); ?>
+                            <?php 
+                            if (class_exists('Nova_User_Menu')) {
+                                Nova_User_Menu::render_user_menu();
+                            } else {
+                                // Fallback for user menu
+                                ?>
+                                <a class="dropdown-item" href="<?php echo esc_url(admin_url('profile.php')); ?>">
+                                    <i class="ti ti-user me-1"></i> <?php esc_html_e('Profile', 'nova-ui-akira'); ?>
+                                </a>
+                                <a class="dropdown-item" href="<?php echo esc_url(wp_logout_url(home_url())); ?>">
+                                    <i class="ti ti-logout me-1"></i> <?php esc_html_e('Logout', 'nova-ui-akira'); ?>
+                                </a>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -233,7 +245,7 @@
                     <div class="px-3 py-2 d-flex flex-row align-items-center" id="top-search">
                         <i class="ti ti-search fs-22"></i>
                         <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
-                            <input type="search" class="form-control border-0" id="search-modal-input" name="s" placeholder="<?php esc_attr_e('Search &hellip;', 'placeholder', 'nova-ui-akira'); ?>" value="<?php echo get_search_query(); ?>">
+                            <input type="search" class="form-control border-0" id="search-modal-input" name="s" placeholder="<?php esc_attr_e('Search &hellip;', 'nova-ui-akira'); ?>" value="<?php echo get_search_query(); ?>">
                         </form>
                         <button type="button" class="btn p-0" data-bs-dismiss="modal" aria-label="Close">[esc]</button>
                     </div>

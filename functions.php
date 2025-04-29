@@ -76,6 +76,9 @@ function nova_scripts() {
     wp_enqueue_style('nova-app', NOVA_TEMPLATE_URI . '/assets/css/app.min.css', array('bootstrap'), NOVA_VERSION);
     wp_enqueue_style('nova-theme', NOVA_TEMPLATE_URI . '/assets/css/theme.min.css', array('nova-app'), NOVA_VERSION);
     
+    // Custom Logo Styles
+    wp_enqueue_style('nova-logo-styles', NOVA_TEMPLATE_URI . '/assets/css/logo-styles.css', array('nova-app'), NOVA_VERSION);
+    
     // Main Theme Stylesheet
     wp_enqueue_style('nova-style', get_stylesheet_uri(), array(), NOVA_VERSION);
 
@@ -174,6 +177,85 @@ require NOVA_TEMPLATE_DIR . '/inc/comment-template.php';
 require NOVA_TEMPLATE_DIR . '/inc/reading-time.php';
 
 /**
+ * Logo functions for advanced logo management
+ */
+require NOVA_TEMPLATE_DIR . '/inc/logo-functions.php';
+
+/**
  * Menu Enhancer extension
  */
 require NOVA_TEMPLATE_DIR . '/inc/extensions/menu-enhancer/menu-enhancer.php';
+
+/**
+ * Get custom logo for specific mode and state
+ * 
+ * @param string $mode 'light' or 'dark'
+ * @param string $state 'expanded' or 'collapsed'
+ * @return string HTML markup for the logo
+ */
+function nova_get_custom_logo($mode = 'light', $state = 'expanded') {
+    $html = '';
+    $setting = '';
+    
+    // Determine which logo to use based on mode and state
+    if ($mode == 'light' && $state == 'expanded') {
+        $setting = 'nova_logo_light_expanded';
+    } elseif ($mode == 'light' && $state == 'collapsed') {
+        $setting = 'nova_logo_light_collapsed';
+    } elseif ($mode == 'dark' && $state == 'expanded') {
+        $setting = 'nova_logo_dark_expanded';
+    } elseif ($mode == 'dark' && $state == 'collapsed') {
+        $setting = 'nova_logo_dark_collapsed';
+    }
+    
+    // Get logo URL or attachment ID from theme mod
+    $logo = get_theme_mod($setting, '');
+    
+    // If custom logo for this state is not set, fall back to WordPress custom logo
+    if (empty($logo)) {
+        if ($state == 'expanded') {
+            // If expanded and no custom logo, use WordPress default
+            if (has_custom_logo()) {
+                $html = get_custom_logo();
+            } else {
+                $html = '<span class="logo-text">' . get_bloginfo('name') . '</span>';
+            }
+        } else {
+            // If collapsed and no custom logo, use first letter of site name
+            $html = '<span class="logo-sm text-center">' . esc_html(substr(get_bloginfo('name'), 0, 1)) . '</span>';
+        }
+    } else {
+        $class = $state == 'expanded' ? 'custom-logo' : 'custom-logo-sm';
+        $alt = get_bloginfo('name');
+        
+        // Check if $logo is a URL or an attachment ID
+        if (is_numeric($logo)) {
+            // It's an attachment ID, use wp_get_attachment_image
+            $image = wp_get_attachment_image($logo, 'full', false, array(
+                'class' => $class,
+                'alt' => $alt,
+            ));
+            
+            if (!empty($image)) {
+                $html = sprintf(
+                    '<a href="%1$s" class="custom-logo-link" rel="home">%2$s</a>',
+                    esc_url(home_url('/')),
+                    $image
+                );
+            }
+        }
+        
+        // If we don't have HTML yet (not an attachment ID or attachment not found)
+        if (empty($html)) {
+            $html = sprintf(
+                '<a href="%1$s" class="custom-logo-link" rel="home"><img src="%2$s" class="%3$s" alt="%4$s"></a>',
+                esc_url(home_url('/')),
+                esc_url($logo),
+                $class,
+                $alt
+            );
+        }
+    }
+    
+    return $html;
+}
