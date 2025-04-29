@@ -46,16 +46,19 @@ class Nova_Topbar_Icons_Walker extends Walker_Nav_Menu {
             $n = "\n";
         }
         
+        // Define indent - this fixes the undefined variable error
+        $indent = ($depth) ? str_repeat($t, $depth) : '';
+        
         // Get the icon from menu item metadata or fallback to a default
         $icon = !empty($item->icon) ? $item->icon : 'ti ti-circle';
         
         // Output the item as a button with just the icon
         $output .= $indent . '<div class="topbar-item d-none d-sm-flex">' . $n;
-        $output .= $t . '<a href="' . esc_url($item->url) . '" class="topbar-link btn btn-outline-primary btn-icon" ' . 
+        $output .= $indent . $t . '<a href="' . esc_url($item->url) . '" class="topbar-link btn btn-outline-primary btn-icon" ' . 
                    'type="button" title="' . esc_attr($item->title) . '">' . $n;
-        $output .= $t . $t . '<i class="' . esc_attr($icon) . ' fs-22"></i>' . $n;
-        $output .= $t . '</a>' . $n;
-        $output .= '</div>' . $n;
+        $output .= $indent . $t . $t . '<i class="' . esc_attr($icon) . ' fs-22"></i>' . $n;
+        $output .= $indent . $t . '</a>' . $n;
+        $output .= $indent . '</div>' . $n;
     }
     
     /**
