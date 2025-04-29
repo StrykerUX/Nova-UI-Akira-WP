@@ -28,6 +28,7 @@ function nova_setup() {
         'primary'   => esc_html__('Primary Menu', 'nova-ui-akira'),
         'topbar'    => esc_html__('Topbar Menu', 'nova-ui-akira'),
         'footer'    => esc_html__('Footer Menu', 'nova-ui-akira'),
+        'user_menu' => esc_html__('User Dropdown Menu', 'nova-ui-akira'),
     ));
 
     // Switch default core markup to output valid HTML5

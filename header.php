@@ -205,32 +205,7 @@
                             <i class="ti ti-chevron-down d-none d-lg-block align-middle ms-2"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
-                            <!-- item-->
-                            <div class="dropdown-header noti-title">
-                                <h6 class="text-overflow m-0"><?php esc_html_e('Welcome !', 'nova-ui-akira'); ?></h6>
-                            </div>
-
-                            <!-- item-->
-                            <a href="<?php echo esc_url(admin_url('profile.php')); ?>" class="dropdown-item">
-                                <i class="ti ti-user-hexagon me-1 fs-17 align-middle"></i>
-                                <span class="align-middle"><?php esc_html_e('My Account', 'nova-ui-akira'); ?></span>
-                            </a>
-
-                            <?php if (current_user_can('manage_options')) : ?>
-                            <!-- item-->
-                            <a href="<?php echo esc_url(admin_url()); ?>" class="dropdown-item">
-                                <i class="ti ti-settings me-1 fs-17 align-middle"></i>
-                                <span class="align-middle"><?php esc_html_e('Dashboard', 'nova-ui-akira'); ?></span>
-                            </a>
-                            <?php endif; ?>
-
-                            <div class="dropdown-divider"></div>
-
-                            <!-- item-->
-                            <a href="<?php echo esc_url(wp_logout_url(home_url())); ?>" class="dropdown-item active fw-semibold text-danger">
-                                <i class="ti ti-logout me-1 fs-17 align-middle"></i>
-                                <span class="align-middle"><?php esc_html_e('Sign Out', 'nova-ui-akira'); ?></span>
-                            </a>
+                            <?php Nova_User_Menu::render_user_menu(); ?>
                         </div>
                     </div>
                 </div>

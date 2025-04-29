@@ -56,6 +56,8 @@ class Nova_Menu_Enhancer {
     private function load_files() {
         // Load main classes
         require_once NOVA_MENU_ENHANCER_DIR . '/class-menu-icons.php';
+        require_once NOVA_MENU_ENHANCER_DIR . '/class-user-menu-walker.php';
+        require_once NOVA_MENU_ENHANCER_DIR . '/class-user-menu.php';
         
         // Load admin files on admin pages only
         if (is_admin()) {
