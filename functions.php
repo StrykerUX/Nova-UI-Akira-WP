@@ -84,6 +84,9 @@ function nova_scripts() {
     // Bootstrap Bundle
     wp_enqueue_script('bootstrap-bundle', NOVA_TEMPLATE_URI . '/assets/js/bootstrap.bundle.min.js', array('jquery'), NOVA_VERSION, true);
 
+    // Lucide Icons
+    wp_enqueue_script('lucide-icons', 'https://unpkg.com/lucide@latest/dist/umd/lucide.min.js', array(), null, true);
+
     // Simplebar
     wp_enqueue_script('simplebar', NOVA_TEMPLATE_URI . '/assets/js/simplebar.min.js', array(), NOVA_VERSION, true);
 
