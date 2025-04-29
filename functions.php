@@ -5,33 +5,6 @@
  * @package Nova_UI_Akira
  */
 
-/**
- * Ensure jQuery is loaded correctly for our theme
- */
-function nova_jquery_setup() {
-    if (!is_admin()) {
-        // Solo manipulamos jQuery en el frontend, no en el admin
-        wp_deregister_script('jquery');
-        wp_register_script('jquery', includes_url('/js/jquery/jquery.min.js'), array(), null, false);
-        wp_enqueue_script('jquery');
-    }
-}
-add_action('wp_enqueue_scripts', 'nova_jquery_setup', 1);
-
-/**
- * Enqueue scripts for admin area
- */
-function nova_admin_scripts() {
-    // Registrar y cargar el script de iconos en el admin
-    wp_enqueue_script('lucide-icons-admin', 'https://unpkg.com/lucide@latest/dist/umd/lucide.min.js', array(), null, true);
-    wp_enqueue_script('nova-icons-fix-admin', NOVA_TEMPLATE_URI . '/assets/js/nova-icons-fix.js', array('lucide-icons-admin'), NOVA_VERSION, true);
-    
-    // Añadir estilos para los iconos en el admin
-    wp_enqueue_style('tabler-icons-admin', NOVA_TEMPLATE_URI . '/assets/css/tabler-icons.min.css', array(), NOVA_VERSION);
-    wp_enqueue_style('custom-icons-fix-admin', NOVA_TEMPLATE_URI . '/assets/css/custom-icons-fix.css', array('tabler-icons-admin'), NOVA_VERSION);
-}
-add_action('admin_enqueue_scripts', 'nova_admin_scripts');
-
 // Define constants
 define('NOVA_VERSION', '1.0.0');
 define('NOVA_TEMPLATE_DIR', get_template_directory());
@@ -97,7 +70,6 @@ function nova_scripts() {
 
     // Icon CSS
     wp_enqueue_style('tabler-icons', NOVA_TEMPLATE_URI . '/assets/css/tabler-icons.min.css', array(), NOVA_VERSION);
-    wp_enqueue_style('custom-icons-fix', NOVA_TEMPLATE_URI . '/assets/css/custom-icons-fix.css', array('tabler-icons'), NOVA_VERSION);
     
     // Theme CSS
     wp_enqueue_style('nova-app', NOVA_TEMPLATE_URI . '/assets/css/app.min.css', array('bootstrap'), NOVA_VERSION);
@@ -106,27 +78,21 @@ function nova_scripts() {
     // Main Theme Stylesheet
     wp_enqueue_style('nova-style', get_stylesheet_uri(), array(), NOVA_VERSION);
 
-    // jQuery (ya registrado en nova_jquery_setup)
+    // jQuery (already included with WordPress)
     wp_enqueue_script('jquery');
 
-    // Lucide Icons - Cargar primero sin dependencias para evitar problemas
-    wp_enqueue_script('lucide-icons', 'https://unpkg.com/lucide@latest/dist/umd/lucide.min.js', array(), null, true);
-    
-    // Script de inicialización de iconos (independiente de jQuery)
-    wp_enqueue_script('nova-icons-fix', NOVA_TEMPLATE_URI . '/assets/js/nova-icons-fix.js', array('lucide-icons'), NOVA_VERSION, true);
-
-    // Bootstrap Bundle (incluye Popper)
+    // Bootstrap Bundle
     wp_enqueue_script('bootstrap-bundle', NOVA_TEMPLATE_URI . '/assets/js/bootstrap.bundle.min.js', array('jquery'), NOVA_VERSION, true);
 
     // Simplebar
-    wp_enqueue_script('simplebar', NOVA_TEMPLATE_URI . '/assets/js/simplebar.min.js', array('jquery'), NOVA_VERSION, true);
+    wp_enqueue_script('simplebar', NOVA_TEMPLATE_URI . '/assets/js/simplebar.min.js', array(), NOVA_VERSION, true);
 
     // Theme JS
-    wp_enqueue_script('nova-layout', NOVA_TEMPLATE_URI . '/assets/js/layout.js', array('jquery', 'bootstrap-bundle'), NOVA_VERSION, true);
-    wp_enqueue_script('nova-theme', NOVA_TEMPLATE_URI . '/assets/js/theme.js', array('jquery', 'bootstrap-bundle'), NOVA_VERSION, true);
+    wp_enqueue_script('nova-layout', NOVA_TEMPLATE_URI . '/assets/js/layout.js', array('jquery'), NOVA_VERSION, true);
+    wp_enqueue_script('nova-theme', NOVA_TEMPLATE_URI . '/assets/js/theme.js', array('jquery'), NOVA_VERSION, true);
 
-    // Main JS - Asegurarse de que depende de jQuery
-    wp_enqueue_script('nova-app', NOVA_TEMPLATE_URI . '/assets/js/app.js', array('jquery', 'bootstrap-bundle', 'simplebar', 'lucide-icons', 'nova-layout', 'nova-theme', 'nova-icons-fix'), NOVA_VERSION, true);
+    // Main JS
+    wp_enqueue_script('nova-app', NOVA_TEMPLATE_URI . '/assets/js/app.js', array('jquery', 'bootstrap-bundle', 'simplebar'), NOVA_VERSION, true);
 
     // Comment Reply
     if (is_singular() && comments_open() && get_option('thread_comments')) {
