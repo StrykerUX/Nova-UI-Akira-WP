@@ -13,15 +13,6 @@ get_header();
     <div class="page-container">
         <!-- No page title or breadcrumbs as requested -->
         <!-- Contenedor de tokens como en la imagen de referencia -->
-        <div class="tokens-container mb-3">
-            <div class="tokens-info p-3 bg-light rounded">
-                <?php 
-                    // Solo es decorativo, similar a la imagen de referencia
-                    echo '<span class="text-muted">Tokens disponibles: 1001907</span>'; 
-                ?>
-            </div>
-        </div>
-
         <div class="row dashboard-content-row">
             <div class="col dashboard-content-col">
                 <?php

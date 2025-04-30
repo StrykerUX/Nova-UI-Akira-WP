@@ -3,12 +3,28 @@
  */
 
 /* Dashboard Template Styles */
-.dashboard-template {
-    padding-top: 25px;
+body.page-template-template-dashboard {
+    overflow: hidden !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
 }
-
-.dashboard-template .page-container {
+/* Asegura que el contenedor principal respete la altura disponible */
+.dashboard-template {
     padding-top: 15px;
+    height: calc(100vh - 120px);
+    max-height: calc(100vh - 60px);
+    overflow: hidden;
+}
+/* Contiene el contenido en su área sin permitir desbordamiento */
+.dashboard-template .page-container {
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+.dashboard-template .dashboard-content-row {
+    height: calc(100% - 126px);
+    max-height: calc(100% - 60px);
+    overflow: hidden;
 }
 
 .dashboard-template .dashboard-content-row {
