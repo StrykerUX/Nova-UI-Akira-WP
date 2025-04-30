@@ -75,7 +75,7 @@ function nova_scripts() {
     // Theme CSS
     wp_enqueue_style('nova-app', NOVA_TEMPLATE_URI . '/assets/css/app.min.css', array('bootstrap'), NOVA_VERSION);
     wp_enqueue_style('nova-theme', NOVA_TEMPLATE_URI . '/assets/css/theme.min.css', array('nova-app'), NOVA_VERSION);
-    wp_enqueue_style('nova-hamburger', NOVA_TEMPLATE_URI . '/assets/css/hamburger-menu.css', array('nova-theme'), NOVA_VERSION);
+    wp_enqueue_style('nova-icon-hover', NOVA_TEMPLATE_URI . '/assets/css/icon-hover-effects.css', array('nova-theme'), NOVA_VERSION);
     
     // Custom Logo Styles
     wp_enqueue_style('nova-logo-styles', NOVA_TEMPLATE_URI . '/assets/css/logo-styles.css', array('nova-app'), NOVA_VERSION);
@@ -95,7 +95,7 @@ function nova_scripts() {
     // Theme JS
     wp_enqueue_script('nova-layout', NOVA_TEMPLATE_URI . '/assets/js/layout.js', array('jquery'), NOVA_VERSION, true);
     wp_enqueue_script('nova-theme', NOVA_TEMPLATE_URI . '/assets/js/theme.js', array('jquery'), NOVA_VERSION, true);
-    wp_enqueue_script('nova-hamburger', NOVA_TEMPLATE_URI . '/assets/js/hamburger-menu.js', array('jquery'), NOVA_VERSION, true);
+    wp_enqueue_script('nova-icon-hover', NOVA_TEMPLATE_URI . '/assets/js/icon-hover.js', array('jquery'), NOVA_VERSION, true);
 
     // Main JS
     wp_enqueue_script('nova-app', NOVA_TEMPLATE_URI . '/assets/js/app.js', array('jquery', 'bootstrap-bundle', 'simplebar'), NOVA_VERSION, true);

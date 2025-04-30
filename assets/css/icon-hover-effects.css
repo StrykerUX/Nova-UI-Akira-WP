@@ -1,0 +1,58 @@
+/**
+ * Icon Hover Effects for Nova UI Akira
+ * Applies accent color to icon hover states
+ */
+
+/* Apply accent color to icon hovers */
+.btn-icon:hover i,
+.topbar-link:hover i,
+.menu-icon:hover i,
+.side-nav-link:hover i {
+    color: #7949f6 !important; /* Default accent color */
+}
+
+/* Menu items with icons */
+.side-nav-item:hover .menu-icon i,
+.side-nav-item:focus .menu-icon i,
+.side-nav-item.active .menu-icon i {
+    color: #7949f6 !important;
+}
+
+/* Header icons */
+.app-topbar .btn-icon:hover i,
+.app-topbar .btn-outline-primary:hover i {
+    color: #7949f6 !important;
+}
+
+/* User and hamburger menu custom hover effect */
+#light-dark-mode:hover i,
+.sidenav-toggle-button:hover i,
+.user-dropdown-toggle:hover i {
+    color: #7949f6 !important;
+}
+
+/* For icons in buttons */
+.btn:hover i {
+    color: inherit;
+}
+.btn-outline-primary:hover i,
+.btn-primary:hover i {
+    color: #ffffff !important;
+}
+
+/* For icons in topbar */
+.topbar-item .dropdown-toggle:hover i {
+    color: #7949f6 !important;
+}
+
+/* Tabler icons hover effect */
+.ti:hover {
+    color: #7949f6 !important;
+}
+
+/* Apply to all icon font classes for maximum compatibility */
+button:hover i,
+a:hover i,
+.nav-link:hover i {
+    color: #7949f6 !important;
+}

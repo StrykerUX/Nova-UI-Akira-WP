@@ -227,14 +227,6 @@ function nova_color_customizer_css() {
             --bs-btn-hover-border-color: " . nova_adjust_brightness($button_background, -10) . ";
         }
         
-        /* Navbar hamburger icon and other accent elements */
-        .hamburger-icon span {
-            background-color: {$accent_color};
-        }
-        .hamburger-icon:hover span {
-            background-color: " . nova_adjust_brightness($accent_color, -15) . ";
-        }
-        
         /* Custom icons colors */
         .icon-dual-primary {
             color: {$primary_color};
@@ -260,9 +252,26 @@ function nova_color_customizer_css() {
             color: {$menu_hover_color};
         }
         
-        /* Navbar toggles and interactive elements */
-        .navbar-toggle:hover .toggle-icon {
-            background-color: {$accent_color};
+        /* Icon hover effects - apply accent color to all icons on hover */
+        .btn-icon:hover i,
+        .topbar-link:hover i,
+        .menu-icon:hover i,
+        .side-nav-link:hover i,
+        .app-topbar .btn-icon:hover i,
+        .app-topbar .btn-outline-primary:hover i,
+        #light-dark-mode:hover i,
+        .sidenav-toggle-button:hover i,
+        .user-dropdown-toggle:hover i,
+        .topbar-item .dropdown-toggle:hover i,
+        button:hover i,
+        a:hover i,
+        .nav-link:hover i {
+            color: {$accent_color} !important;
+        }
+        
+        /* Make sure button text color stays correct */
+        .btn-primary:hover i {
+            color: {$button_text} !important;
         }
     ";
     

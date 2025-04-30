@@ -88,8 +88,28 @@
             document.documentElement.style.setProperty('--bs-link-hover-color', darkerAccent);
             document.documentElement.style.setProperty('--bs-link-hover-color-rgb', darkerRgb);
             
-            // Update hamburger icon
-            $('.hamburger-icon span').css('background-color', newVal);
+            // Update icon colors for hover effects
+            var style = $('#nova-icon-hover-preview');
+            if (style.length === 0) {
+                style = $('<style id="nova-icon-hover-preview"></style>').appendTo('head');
+            }
+            
+            style.html('\
+            .btn-icon:hover i, \
+            .topbar-link:hover i, \
+            .menu-icon:hover i, \
+            .side-nav-link:hover i, \
+            .app-topbar .btn-icon:hover i, \
+            .app-topbar .btn-outline-primary:hover i, \
+            #light-dark-mode:hover i, \
+            .sidenav-toggle-button:hover i, \
+            .user-dropdown-toggle:hover i, \
+            .topbar-item .dropdown-toggle:hover i, \
+            button:hover i, \
+            a:hover i, \
+            .nav-link:hover i { \
+                color: ' + newVal + ' !important; \
+            }');
             
             // Update icon colors
             $('.icon-dual-accent').css({
