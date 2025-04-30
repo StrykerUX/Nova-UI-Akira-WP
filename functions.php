@@ -79,6 +79,9 @@ function nova_scripts() {
     // Custom Logo Styles
     wp_enqueue_style('nova-logo-styles', NOVA_TEMPLATE_URI . '/assets/css/logo-styles.css', array('nova-app'), NOVA_VERSION);
     
+    // Theme Colors CSS
+    wp_enqueue_style('nova-theme-colors', NOVA_TEMPLATE_URI . '/assets/css/theme-colors.css', array('nova-app'), NOVA_VERSION);
+    
     // Main Theme Stylesheet
     wp_enqueue_style('nova-style', get_stylesheet_uri(), array(), NOVA_VERSION);
 

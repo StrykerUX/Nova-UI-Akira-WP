@@ -1,0 +1,95 @@
+/* 
+ * Nova UI Akira - Theme Colors CSS
+ * Custom color styles for the theme
+ */
+
+/* Text Selection Styling - Light Mode */
+:root[data-bs-theme=light] ::selection {
+    background-color: var(--selection-bg, #669776);
+    color: var(--selection-text, #ffffff);
+}
+
+:root[data-bs-theme=light] ::-moz-selection {
+    background-color: var(--selection-bg, #669776);
+    color: var(--selection-text, #ffffff);
+}
+
+/* Text Selection Styling - Dark Mode */
+:root[data-bs-theme=dark] ::selection {
+    background-color: var(--selection-bg, #a3c1ad);
+    color: var(--selection-text, #17181e);
+}
+
+:root[data-bs-theme=dark] ::-moz-selection {
+    background-color: var(--selection-bg, #a3c1ad);
+    color: var(--selection-text, #17181e);
+}
+
+/* Menu Item Styling - Light Mode */
+:root[data-menu-color=light] .side-nav .side-nav-link:hover {
+    color: var(--bs-menu-item-hover-color, #669776);
+}
+
+:root[data-menu-color=light] .side-nav .menuitem-active > a {
+    color: var(--bs-menu-item-active-color, #669776);
+}
+
+/* Menu Item Styling - Dark Mode */
+:root[data-bs-theme=dark] .side-nav .side-nav-link:hover {
+    color: var(--bs-menu-item-hover-color, #e2eeff);
+}
+
+:root[data-bs-theme=dark] .side-nav .menuitem-active > a {
+    color: var(--bs-menu-item-active-color, #e2eeff);
+}
+
+/* Link Styling */
+a {
+    color: var(--bs-link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--bs-link-hover-color);
+    text-decoration: none;
+}
+
+/* Button Secondary Color */
+.btn-secondary {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+}
+
+.btn-outline-secondary {
+    color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+}
+
+/* Additional Custom Components */
+.badge-secondary {
+    background-color: var(--bs-secondary);
+}
+
+.text-secondary {
+    color: var(--bs-secondary) !important;
+}
+
+.border-secondary {
+    border-color: var(--bs-secondary) !important;
+}
+
+/* Progress bars and other components */
+.progress-bar-secondary {
+    background-color: var(--bs-secondary);
+}
+
+/* Custom form controls */
+.custom-control-input:checked ~ .custom-control-label::before {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+}

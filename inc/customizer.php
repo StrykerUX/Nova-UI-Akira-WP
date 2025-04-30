@@ -121,36 +121,330 @@ function nova_customize_register($wp_customize) {
         'settings' => 'nova_show_logo_topbar',
     ));
 
-    // Theme Colors Section
+    // Main Theme Colors Section
     $wp_customize->add_section('nova_colors', array(
+        'title'    => __('Theme Colors', 'nova-ui-akira'),
+        'priority' => 30,
+        'description' => __('Global color settings that apply to both light and dark modes.', 'nova-ui-akira'),
+    ));
+
+    // Light Mode Colors Section
+    $wp_customize->add_section('nova_colors_light', array(
+        'title'    => __('Light Mode Colors', 'nova-ui-akira'),
+        'description' => __('Color settings specific to Light Mode.', 'nova-ui-akira'),
+        'priority' => 31,
+        'panel'    => 'nova_theme_colors',
+    ));
+
+    // Dark Mode Colors Section
+    $wp_customize->add_section('nova_colors_dark', array(
+        'title'    => __('Dark Mode Colors', 'nova-ui-akira'),
+        'description' => __('Color settings specific to Dark Mode.', 'nova-ui-akira'),
+        'priority' => 32,
+        'panel'    => 'nova_theme_colors',
+    ));
+
+    // Add panel for theme colors
+    $wp_customize->add_panel('nova_theme_colors', array(
         'title'    => __('Theme Colors', 'nova-ui-akira'),
         'priority' => 30,
     ));
 
-    // Primary Color
-    $wp_customize->add_setting('primary_color', array(
-        'default'           => '#6c57d8',
+    // Add sections to the panel
+    $wp_customize->add_section('nova_colors_light', array(
+        'title'    => __('Light Mode Colors', 'nova-ui-akira'),
+        'description' => __('Color settings specific to Light Mode.', 'nova-ui-akira'),
+        'priority' => 31,
+        'panel'    => 'nova_theme_colors',
+    ));
+
+    $wp_customize->add_section('nova_colors_dark', array(
+        'title'    => __('Dark Mode Colors', 'nova-ui-akira'),
+        'description' => __('Color settings specific to Dark Mode.', 'nova-ui-akira'),
+        'priority' => 32,
+        'panel'    => 'nova_theme_colors',
+    ));
+
+    // LIGHT MODE COLORS
+    // 1. Primary Color (Light Mode)
+    $wp_customize->add_setting('light_primary_color', array(
+        'default'           => '#313a46',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'postMessage',
     ));
 
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'primary_color', array(
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'light_primary_color', array(
         'label'    => __('Primary Color', 'nova-ui-akira'),
-        'section'  => 'nova_colors',
-        'settings' => 'primary_color',
+        'description' => __('Main brand color used for primary elements.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_light',
+        'settings' => 'light_primary_color',
     )));
 
-    // Secondary Color
-    $wp_customize->add_setting('secondary_color', array(
-        'default'           => '#6c757d',
+    // 2. Secondary/Accent Color (Light Mode)
+    $wp_customize->add_setting('light_secondary_color', array(
+        'default'           => '#669776',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'postMessage',
     ));
 
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'secondary_color', array(
-        'label'    => __('Secondary Color', 'nova-ui-akira'),
-        'section'  => 'nova_colors',
-        'settings' => 'secondary_color',
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'light_secondary_color', array(
+        'label'    => __('Secondary/Accent Color', 'nova-ui-akira'),
+        'description' => __('Used for interactive elements and highlights.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_light',
+        'settings' => 'light_secondary_color',
+    )));
+
+    // 3. Link Color (Light Mode)
+    $wp_customize->add_setting('light_link_color', array(
+        'default'           => '#669776',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'light_link_color', array(
+        'label'    => __('Link Color', 'nova-ui-akira'),
+        'description' => __('Color for text links.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_light',
+        'settings' => 'light_link_color',
+    )));
+
+    // 4. Link Hover Color (Light Mode)
+    $wp_customize->add_setting('light_link_hover_color', array(
+        'default'           => '#ed6060',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'light_link_hover_color', array(
+        'label'    => __('Link Hover Color', 'nova-ui-akira'),
+        'description' => __('Color for links when hovered.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_light',
+        'settings' => 'light_link_hover_color',
+    )));
+
+    // 5. Menu Active Color (Light Mode)
+    $wp_customize->add_setting('light_menu_active_color', array(
+        'default'           => '#669776',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'light_menu_active_color', array(
+        'label'    => __('Menu Active Item Color', 'nova-ui-akira'),
+        'description' => __('Color for active menu items.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_light',
+        'settings' => 'light_menu_active_color',
+    )));
+
+    // 6. Menu Hover Color (Light Mode)
+    $wp_customize->add_setting('light_menu_hover_color', array(
+        'default'           => '#669776',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'light_menu_hover_color', array(
+        'label'    => __('Menu Hover Color', 'nova-ui-akira'),
+        'description' => __('Color for menu items when hovered.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_light',
+        'settings' => 'light_menu_hover_color',
+    )));
+
+    // 7. Background Color (Light Mode)
+    $wp_customize->add_setting('light_background_color', array(
+        'default'           => '#fffbf4',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'light_background_color', array(
+        'label'    => __('Background Color', 'nova-ui-akira'),
+        'description' => __('Main background color for light mode.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_light',
+        'settings' => 'light_background_color',
+    )));
+
+    // 8. Text Color (Light Mode)
+    $wp_customize->add_setting('light_text_color', array(
+        'default'           => '#4c4c5c',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'light_text_color', array(
+        'label'    => __('Text Color', 'nova-ui-akira'),
+        'description' => __('Main text color for light mode.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_light',
+        'settings' => 'light_text_color',
+    )));
+
+    // 9. Selection Background Color (Light Mode)
+    $wp_customize->add_setting('light_selection_background', array(
+        'default'           => '#669776',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'light_selection_background', array(
+        'label'    => __('Text Selection Background', 'nova-ui-akira'),
+        'description' => __('Background color when text is selected.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_light',
+        'settings' => 'light_selection_background',
+    )));
+
+    // 10. Selection Text Color (Light Mode)
+    $wp_customize->add_setting('light_selection_text', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'light_selection_text', array(
+        'label'    => __('Text Selection Color', 'nova-ui-akira'),
+        'description' => __('Text color when text is selected.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_light',
+        'settings' => 'light_selection_text',
+    )));
+
+    // DARK MODE COLORS
+    // 1. Primary Color (Dark Mode)
+    $wp_customize->add_setting('dark_primary_color', array(
+        'default'           => '#838990',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'dark_primary_color', array(
+        'label'    => __('Primary Color', 'nova-ui-akira'),
+        'description' => __('Main brand color used for primary elements.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_dark',
+        'settings' => 'dark_primary_color',
+    )));
+
+    // 2. Secondary/Accent Color (Dark Mode)
+    $wp_customize->add_setting('dark_secondary_color', array(
+        'default'           => '#a3c1ad',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'dark_secondary_color', array(
+        'label'    => __('Secondary/Accent Color', 'nova-ui-akira'),
+        'description' => __('Used for interactive elements and highlights.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_dark',
+        'settings' => 'dark_secondary_color',
+    )));
+
+    // 3. Link Color (Dark Mode)
+    $wp_customize->add_setting('dark_link_color', array(
+        'default'           => '#838990',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'dark_link_color', array(
+        'label'    => __('Link Color', 'nova-ui-akira'),
+        'description' => __('Color for text links.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_dark',
+        'settings' => 'dark_link_color',
+    )));
+
+    // 4. Link Hover Color (Dark Mode)
+    $wp_customize->add_setting('dark_link_hover_color', array(
+        'default'           => '#969ba1',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'dark_link_hover_color', array(
+        'label'    => __('Link Hover Color', 'nova-ui-akira'),
+        'description' => __('Color for links when hovered.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_dark',
+        'settings' => 'dark_link_hover_color',
+    )));
+
+    // 5. Menu Active Color (Dark Mode)
+    $wp_customize->add_setting('dark_menu_active_color', array(
+        'default'           => '#e2eeff',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'dark_menu_active_color', array(
+        'label'    => __('Menu Active Item Color', 'nova-ui-akira'),
+        'description' => __('Color for active menu items.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_dark',
+        'settings' => 'dark_menu_active_color',
+    )));
+
+    // 6. Menu Hover Color (Dark Mode)
+    $wp_customize->add_setting('dark_menu_hover_color', array(
+        'default'           => '#e2eeff',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'dark_menu_hover_color', array(
+        'label'    => __('Menu Hover Color', 'nova-ui-akira'),
+        'description' => __('Color for menu items when hovered.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_dark',
+        'settings' => 'dark_menu_hover_color',
+    )));
+
+    // 7. Background Color (Dark Mode)
+    $wp_customize->add_setting('dark_background_color', array(
+        'default'           => '#17181e',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'dark_background_color', array(
+        'label'    => __('Background Color', 'nova-ui-akira'),
+        'description' => __('Main background color for dark mode.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_dark',
+        'settings' => 'dark_background_color',
+    )));
+
+    // 8. Text Color (Dark Mode)
+    $wp_customize->add_setting('dark_text_color', array(
+        'default'           => '#aab8c5',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'dark_text_color', array(
+        'label'    => __('Text Color', 'nova-ui-akira'),
+        'description' => __('Main text color for dark mode.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_dark',
+        'settings' => 'dark_text_color',
+    )));
+
+    // 9. Selection Background Color (Dark Mode)
+    $wp_customize->add_setting('dark_selection_background', array(
+        'default'           => '#a3c1ad',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'dark_selection_background', array(
+        'label'    => __('Text Selection Background', 'nova-ui-akira'),
+        'description' => __('Background color when text is selected.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_dark',
+        'settings' => 'dark_selection_background',
+    )));
+
+    // 10. Selection Text Color (Dark Mode)
+    $wp_customize->add_setting('dark_selection_text', array(
+        'default'           => '#17181e',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'dark_selection_text', array(
+        'label'    => __('Text Selection Color', 'nova-ui-akira'),
+        'description' => __('Text color when text is selected.', 'nova-ui-akira'),
+        'section'  => 'nova_colors_dark',
+        'settings' => 'dark_selection_text',
     )));
 
     // Layout Options Section
@@ -243,28 +537,97 @@ add_action('customize_preview_init', 'nova_customize_preview_js');
  * Output custom CSS for customizer options
  */
 function nova_customizer_css() {
-    $primary_color = get_theme_mod('primary_color', '#6c57d8');
-    $secondary_color = get_theme_mod('secondary_color', '#6c757d');
+    // Get the theme mode (light or dark)
+    $theme_mode = 'light'; // Default to light mode
     
-    $custom_css = "";
-    
-    if ($primary_color !== '#6c57d8') {
-        $custom_css .= "
-            :root {
-                --bs-primary: {$primary_color};
-                --bs-primary-rgb: " . implode(',', nova_hex_to_rgb($primary_color)) . ";
-            }
-        ";
+    // Check if a cookie or session variable exists to determine mode
+    if (isset($_COOKIE['theme_mode']) && $_COOKIE['theme_mode'] === 'dark') {
+        $theme_mode = 'dark';
     }
     
-    if ($secondary_color !== '#6c757d') {
-        $custom_css .= "
-            :root {
-                --bs-secondary: {$secondary_color};
-                --bs-secondary-rgb: " . implode(',', nova_hex_to_rgb($secondary_color)) . ";
-            }
-        ";
-    }
+    // Light Mode Colors
+    $light_primary_color = get_theme_mod('light_primary_color', '#313a46');
+    $light_secondary_color = get_theme_mod('light_secondary_color', '#669776');
+    $light_link_color = get_theme_mod('light_link_color', '#669776');
+    $light_link_hover_color = get_theme_mod('light_link_hover_color', '#ed6060');
+    $light_menu_active_color = get_theme_mod('light_menu_active_color', '#669776');
+    $light_menu_hover_color = get_theme_mod('light_menu_hover_color', '#669776');
+    $light_background_color = get_theme_mod('light_background_color', '#fffbf4');
+    $light_text_color = get_theme_mod('light_text_color', '#4c4c5c');
+    $light_selection_background = get_theme_mod('light_selection_background', '#669776');
+    $light_selection_text = get_theme_mod('light_selection_text', '#ffffff');
+    
+    // Dark Mode Colors
+    $dark_primary_color = get_theme_mod('dark_primary_color', '#838990');
+    $dark_secondary_color = get_theme_mod('dark_secondary_color', '#a3c1ad');
+    $dark_link_color = get_theme_mod('dark_link_color', '#838990');
+    $dark_link_hover_color = get_theme_mod('dark_link_hover_color', '#969ba1');
+    $dark_menu_active_color = get_theme_mod('dark_menu_active_color', '#e2eeff');
+    $dark_menu_hover_color = get_theme_mod('dark_menu_hover_color', '#e2eeff');
+    $dark_background_color = get_theme_mod('dark_background_color', '#17181e');
+    $dark_text_color = get_theme_mod('dark_text_color', '#aab8c5');
+    $dark_selection_background = get_theme_mod('dark_selection_background', '#a3c1ad');
+    $dark_selection_text = get_theme_mod('dark_selection_text', '#17181e');
+    
+    // Create CSS
+    $custom_css = "
+        /* Light Mode Variables */
+        :root {
+            --bs-primary: {$light_primary_color};
+            --bs-secondary: {$light_secondary_color};
+            --bs-primary-rgb: " . implode(',', nova_hex_to_rgb($light_primary_color)) . ";
+            --bs-secondary-rgb: " . implode(',', nova_hex_to_rgb($light_secondary_color)) . ";
+            --bs-link-color: {$light_link_color};
+            --bs-link-hover-color: {$light_link_hover_color};
+            --bs-link-color-rgb: " . implode(',', nova_hex_to_rgb($light_link_color)) . ";
+            --bs-link-hover-color-rgb: " . implode(',', nova_hex_to_rgb($light_link_hover_color)) . ";
+            --bs-body-color: {$light_text_color};
+            --bs-body-bg: {$light_background_color};
+            --bs-body-color-rgb: " . implode(',', nova_hex_to_rgb($light_text_color)) . ";
+            --bs-body-bg-rgb: " . implode(',', nova_hex_to_rgb($light_background_color)) . ";
+        }
+        
+        /* Menu customization - Light Mode */
+        :root[data-menu-color=light] {
+            --bs-menu-item-hover-color: {$light_menu_hover_color};
+            --bs-menu-item-active-color: {$light_menu_active_color};
+        }
+        
+        /* Text selection - Light Mode */
+        :root[data-bs-theme=light] ::selection {
+            background-color: {$light_selection_background};
+            color: {$light_selection_text};
+        }
+        
+        /* Dark Mode Variables */
+        :root[data-bs-theme=dark] {
+            --bs-primary: {$dark_primary_color};
+            --bs-secondary: {$dark_secondary_color};
+            --bs-primary-rgb: " . implode(',', nova_hex_to_rgb($dark_primary_color)) . ";
+            --bs-secondary-rgb: " . implode(',', nova_hex_to_rgb($dark_secondary_color)) . ";
+            --bs-link-color: {$dark_link_color};
+            --bs-link-hover-color: {$dark_link_hover_color};
+            --bs-link-color-rgb: " . implode(',', nova_hex_to_rgb($dark_link_color)) . ";
+            --bs-link-hover-color-rgb: " . implode(',', nova_hex_to_rgb($dark_link_hover_color)) . ";
+            --bs-body-color: {$dark_text_color};
+            --bs-body-bg: {$dark_background_color};
+            --bs-body-color-rgb: " . implode(',', nova_hex_to_rgb($dark_text_color)) . ";
+            --bs-body-bg-rgb: " . implode(',', nova_hex_to_rgb($dark_background_color)) . ";
+        }
+        
+        /* Menu customization - Dark Mode */
+        :root[data-bs-theme=dark][data-menu-color=light],
+        :root[data-bs-theme=dark][data-menu-color=dark] {
+            --bs-menu-item-hover-color: {$dark_menu_hover_color};
+            --bs-menu-item-active-color: {$dark_menu_active_color};
+        }
+        
+        /* Text selection - Dark Mode */
+        :root[data-bs-theme=dark] ::selection {
+            background-color: {$dark_selection_background};
+            color: {$dark_selection_text};
+        }
+    ";
     
     wp_add_inline_style('nova-theme', $custom_css);
 }
