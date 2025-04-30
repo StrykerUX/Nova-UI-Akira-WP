@@ -4,7 +4,7 @@
 
 /* Dashboard Template Styles */
 .dashboard-template .dashboard-content-row {
-    height: calc(100vh - 180px);
+    height: calc(100vh - 70px);
     min-height: 400px;
 }
 

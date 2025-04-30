@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Dashboard
- * Description: A template with 100% height content area and internal scrolling.
+ * Description: A template with 100% height content area and internal scrolling, without title, breadcrumbs, or footer.
  *
  * @package Nova_UI_Akira
  */
@@ -11,23 +11,7 @@ get_header();
 
 <div class="page-content dashboard-template">
     <div class="page-container">
-        <div class="row">
-            <div class="col-12">
-                <div class="page-title-head d-flex align-items-sm-center flex-sm-row flex-column">
-                    <div class="flex-grow-1">
-                        <h4 class="fs-18 text-uppercase fw-bold m-0"><?php echo get_the_title(); ?></h4>
-                    </div>
-                    <div class="mt-3 mt-sm-0">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('Home', 'nova-ui-akira'); ?></a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><?php the_title(); ?></li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- No page title or breadcrumbs as requested -->
 
         <div class="row dashboard-content-row">
             <div class="col dashboard-content-col">
@@ -71,4 +55,11 @@ get_header();
 </div>
 
 <?php
-get_footer();
+// No footer for this template
+?>
+    </div> <!-- End wrapper -->
+
+<?php wp_footer(); ?>
+
+</body>
+</html>
