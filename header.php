@@ -146,8 +146,13 @@
                 <?php endif; ?>
 
                 <!-- Sidebar Menu Toggle Button -->
-                <button class="sidenav-toggle-button btn btn-secondary btn-icon">
-                    <i class="ti ti-menu-deep fs-24"></i>
+                <button class="sidenav-toggle-button btn btn-icon">
+                    <div class="hamburger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </button>
 
                 <!-- Button Trigger Search Modal -->
