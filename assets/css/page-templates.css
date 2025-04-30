@@ -1,0 +1,112 @@
+/* 
+ * Nova UI Akira - Page Templates Styles
+ */
+
+/* Dashboard Template Styles */
+.dashboard-template .dashboard-content-row {
+    height: calc(100vh - 180px);
+    min-height: 400px;
+}
+
+.dashboard-template .dashboard-content-col {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-template .dashboard-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.dashboard-template .dashboard-card-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.dashboard-template .dashboard-card-text {
+    height: auto;
+}
+
+/* Canvas Template Styles */
+.canvas-template {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: auto;
+}
+
+.canvas-content {
+    width: 100%;
+    height: 100%;
+}
+
+/* IA Chat Template Styles */
+.ia-chat-template .ia-chat-content-row {
+    min-height: calc(100vh - 250px);
+}
+
+.ia-chat-template .ia-chat-card {
+    height: 100%;
+}
+
+.ia-chat-template .ia-chat-card-body {
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Quick Link Template Styles */
+.quick-link-template {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.quick-link-content {
+    flex: 1;
+    width: 100%;
+}
+
+.quick-link-footer {
+    background-color: var(--bs-primary-bg-subtle, #f8f9fa);
+    color: var(--bs-body-color, #212529);
+    font-size: 0.875rem;
+    border-top: 1px solid var(--bs-border-color, #dee2e6);
+}
+
+.quick-link-footer a {
+    color: var(--bs-primary, #3071a9);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.quick-link-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .dashboard-template .dashboard-content-row {
+        height: auto;
+    }
+    
+    .dashboard-template .dashboard-card {
+        max-height: none;
+        overflow: visible;
+    }
+    
+    .dashboard-template .dashboard-card-body {
+        overflow: visible;
+    }
+    
+    .ia-chat-template .ia-chat-content-row {
+        min-height: auto;
+    }
+}

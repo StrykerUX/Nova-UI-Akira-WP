@@ -85,6 +85,9 @@ function nova_scripts() {
     // Main Theme Stylesheet
     wp_enqueue_style('nova-style', get_stylesheet_uri(), array(), NOVA_VERSION);
     
+    // Page Templates Styles
+    wp_enqueue_style('nova-page-templates', NOVA_TEMPLATE_URI . '/assets/css/page-templates.css', array('nova-style'), NOVA_VERSION);
+    
     // Selection Styles - loaded last to ensure they take priority
     wp_enqueue_style('nova-selection-styles', NOVA_TEMPLATE_URI . '/assets/css/selection-styles.css', array('nova-style', 'nova-theme-colors'), NOVA_VERSION);
 
@@ -199,3 +202,32 @@ require NOVA_TEMPLATE_DIR . '/inc/extensions/menu-enhancer/menu-enhancer.php';
 
 // La función nova_get_custom_logo ha sido eliminada para evitar conflictos
 // Ahora usamos nova_get_advanced_logo() o nova_get_theme_logo() para gestionar los logotipos
+
+/**
+ * Register page templates
+ */
+function nova_register_page_templates() {
+    // Las plantillas de página ahora se detectan automáticamente desde el directorio page-templates
+    // Pero necesitamos asegurarnos de que el tema sepa dónde encontrarlas
+    add_filter('theme_page_templates', 'nova_add_page_templates');
+}
+add_action('after_setup_theme', 'nova_register_page_templates');
+
+/**
+ * Add custom page templates to the list of available templates
+ */
+function nova_add_page_templates($templates) {
+    // Plantilla Dashboard
+    $templates['page-templates/template-dashboard.php'] = esc_html__('Dashboard', 'nova-ui-akira');
+    
+    // Plantilla Canvas
+    $templates['page-templates/template-canvas.php'] = esc_html__('Canvas', 'nova-ui-akira');
+    
+    // Plantilla IA Chat
+    $templates['page-templates/template-ia-chat.php'] = esc_html__('IA Chat', 'nova-ui-akira');
+    
+    // Plantilla Quick Link
+    $templates['page-templates/template-quick-link.php'] = esc_html__('Quick Link', 'nova-ui-akira');
+    
+    return $templates;
+}
