@@ -10,7 +10,6 @@ body.page-template-template-dashboard {
 }
 /* Asegura que el contenedor principal respete la altura disponible */
 .dashboard-template {
-    padding-top: 15px;
     height: calc(100vh - 120px);
     max-height: calc(100vh - 60px);
     overflow: hidden;
@@ -44,7 +43,6 @@ body.page-template-template-dashboard {
     max-height: 100%;
     overflow: hidden;
     margin-bottom: 15px;
-    margin-top: 25px;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
