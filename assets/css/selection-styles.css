@@ -1,0 +1,26 @@
+/**
+ * Selection styles for Nova UI Akira
+ * This file applies selection styles directly to ensure they take effect
+ */
+
+/* Global selection styles */
+::selection {
+    background-color: #6500ff !important;
+    color: #ffffff !important;
+}
+
+::-moz-selection {
+    background-color: #6500ff !important;
+    color: #ffffff !important;
+}
+
+/* Dark mode selection styles */
+[data-bs-theme="dark"] ::selection {
+    background-color: #9161ff !important;
+    color: #17181e !important;
+}
+
+[data-bs-theme="dark"] ::-moz-selection {
+    background-color: #9161ff !important;
+    color: #17181e !important;
+}

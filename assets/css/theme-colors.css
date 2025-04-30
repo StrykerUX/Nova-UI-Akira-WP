@@ -5,42 +5,63 @@
 
 /* Text Selection Styling - Light Mode */
 :root[data-bs-theme=light] ::selection {
-    background-color: var(--selection-bg, #669776);
-    color: var(--selection-text, #ffffff);
+    background-color: #6500ff !important; /* Default value */
+    color: #ffffff !important;
 }
 
 :root[data-bs-theme=light] ::-moz-selection {
-    background-color: var(--selection-bg, #669776);
-    color: var(--selection-text, #ffffff);
+    background-color: #6500ff !important;
+    color: #ffffff !important;
 }
 
 /* Text Selection Styling - Dark Mode */
 :root[data-bs-theme=dark] ::selection {
-    background-color: var(--selection-bg, #a3c1ad);
-    color: var(--selection-text, #17181e);
+    background-color: #9161ff !important; /* Lighter shade of purple for dark mode */
+    color: #17181e !important;
 }
 
 :root[data-bs-theme=dark] ::-moz-selection {
-    background-color: var(--selection-bg, #a3c1ad);
-    color: var(--selection-text, #17181e);
+    background-color: #9161ff !important;
+    color: #17181e !important;
+}
+
+/* Override for customizer changes */
+body[data-light-selection-bg] ::selection {
+    background-color: var(--light-selection-bg) !important;
+    color: var(--light-selection-text) !important;
+}
+
+body[data-light-selection-bg] ::-moz-selection {
+    background-color: var(--light-selection-bg) !important;
+    color: var(--light-selection-text) !important;
+}
+
+body[data-dark-selection-bg] ::selection {
+    background-color: var(--dark-selection-bg) !important;
+    color: var(--dark-selection-text) !important;
+}
+
+body[data-dark-selection-bg] ::-moz-selection {
+    background-color: var(--dark-selection-bg) !important;
+    color: var(--dark-selection-text) !important;
 }
 
 /* Menu Item Styling - Light Mode */
 :root[data-menu-color=light] .side-nav .side-nav-link:hover {
-    color: var(--bs-menu-item-hover-color, #669776);
+    color: var(--bs-menu-item-hover-color, #6500ff) !important;
 }
 
 :root[data-menu-color=light] .side-nav .menuitem-active > a {
-    color: var(--bs-menu-item-active-color, #669776);
+    color: var(--bs-menu-item-active-color, #6500ff) !important;
 }
 
 /* Menu Item Styling - Dark Mode */
 :root[data-bs-theme=dark] .side-nav .side-nav-link:hover {
-    color: var(--bs-menu-item-hover-color, #e2eeff);
+    color: var(--bs-menu-item-hover-color, #9161ff) !important;
 }
 
 :root[data-bs-theme=dark] .side-nav .menuitem-active > a {
-    color: var(--bs-menu-item-active-color, #e2eeff);
+    color: var(--bs-menu-item-active-color, #9161ff) !important;
 }
 
 /* Link Styling */

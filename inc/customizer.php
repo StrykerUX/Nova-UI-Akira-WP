@@ -182,7 +182,7 @@ function nova_customize_register($wp_customize) {
 
     // 2. Secondary/Accent Color (Light Mode)
     $wp_customize->add_setting('light_secondary_color', array(
-        'default'           => '#669776',
+        'default'           => '#6500ff',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'postMessage',
     ));
@@ -196,7 +196,7 @@ function nova_customize_register($wp_customize) {
 
     // 3. Link Color (Light Mode)
     $wp_customize->add_setting('light_link_color', array(
-        'default'           => '#669776',
+        'default'           => '#6500ff',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'postMessage',
     ));
@@ -224,7 +224,7 @@ function nova_customize_register($wp_customize) {
 
     // 5. Menu Active Color (Light Mode)
     $wp_customize->add_setting('light_menu_active_color', array(
-        'default'           => '#669776',
+        'default'           => '#6500ff',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'postMessage',
     ));
@@ -238,7 +238,7 @@ function nova_customize_register($wp_customize) {
 
     // 6. Menu Hover Color (Light Mode)
     $wp_customize->add_setting('light_menu_hover_color', array(
-        'default'           => '#669776',
+        'default'           => '#6500ff',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'postMessage',
     ));
@@ -280,7 +280,7 @@ function nova_customize_register($wp_customize) {
 
     // 9. Selection Background Color (Light Mode)
     $wp_customize->add_setting('light_selection_background', array(
-        'default'           => '#669776',
+        'default'           => '#6500ff',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'postMessage',
     ));
@@ -323,7 +323,7 @@ function nova_customize_register($wp_customize) {
 
     // 2. Secondary/Accent Color (Dark Mode)
     $wp_customize->add_setting('dark_secondary_color', array(
-        'default'           => '#a3c1ad',
+        'default'           => '#9161ff',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'postMessage',
     ));
@@ -337,7 +337,7 @@ function nova_customize_register($wp_customize) {
 
     // 3. Link Color (Dark Mode)
     $wp_customize->add_setting('dark_link_color', array(
-        'default'           => '#838990',
+        'default'           => '#9161ff',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'postMessage',
     ));
@@ -351,7 +351,7 @@ function nova_customize_register($wp_customize) {
 
     // 4. Link Hover Color (Dark Mode)
     $wp_customize->add_setting('dark_link_hover_color', array(
-        'default'           => '#969ba1',
+        'default'           => '#a989ff',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'postMessage',
     ));
@@ -365,7 +365,7 @@ function nova_customize_register($wp_customize) {
 
     // 5. Menu Active Color (Dark Mode)
     $wp_customize->add_setting('dark_menu_active_color', array(
-        'default'           => '#e2eeff',
+        'default'           => '#9161ff',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'postMessage',
     ));
@@ -379,7 +379,7 @@ function nova_customize_register($wp_customize) {
 
     // 6. Menu Hover Color (Dark Mode)
     $wp_customize->add_setting('dark_menu_hover_color', array(
-        'default'           => '#e2eeff',
+        'default'           => '#9161ff',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'postMessage',
     ));
@@ -421,7 +421,7 @@ function nova_customize_register($wp_customize) {
 
     // 9. Selection Background Color (Dark Mode)
     $wp_customize->add_setting('dark_selection_background', array(
-        'default'           => '#a3c1ad',
+        'default'           => '#9161ff',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'postMessage',
     ));
@@ -547,26 +547,26 @@ function nova_customizer_css() {
     
     // Light Mode Colors
     $light_primary_color = get_theme_mod('light_primary_color', '#313a46');
-    $light_secondary_color = get_theme_mod('light_secondary_color', '#669776');
-    $light_link_color = get_theme_mod('light_link_color', '#669776');
+    $light_secondary_color = get_theme_mod('light_secondary_color', '#6500ff'); // Changed default to purple
+    $light_link_color = get_theme_mod('light_link_color', '#6500ff'); // Updated to match
     $light_link_hover_color = get_theme_mod('light_link_hover_color', '#ed6060');
-    $light_menu_active_color = get_theme_mod('light_menu_active_color', '#669776');
-    $light_menu_hover_color = get_theme_mod('light_menu_hover_color', '#669776');
+    $light_menu_active_color = get_theme_mod('light_menu_active_color', '#6500ff'); // Updated to match
+    $light_menu_hover_color = get_theme_mod('light_menu_hover_color', '#6500ff'); // Updated to match
     $light_background_color = get_theme_mod('light_background_color', '#fffbf4');
     $light_text_color = get_theme_mod('light_text_color', '#4c4c5c');
-    $light_selection_background = get_theme_mod('light_selection_background', '#669776');
+    $light_selection_background = get_theme_mod('light_selection_background', '#6500ff'); // Updated to match
     $light_selection_text = get_theme_mod('light_selection_text', '#ffffff');
     
     // Dark Mode Colors
     $dark_primary_color = get_theme_mod('dark_primary_color', '#838990');
-    $dark_secondary_color = get_theme_mod('dark_secondary_color', '#a3c1ad');
-    $dark_link_color = get_theme_mod('dark_link_color', '#838990');
-    $dark_link_hover_color = get_theme_mod('dark_link_hover_color', '#969ba1');
-    $dark_menu_active_color = get_theme_mod('dark_menu_active_color', '#e2eeff');
-    $dark_menu_hover_color = get_theme_mod('dark_menu_hover_color', '#e2eeff');
+    $dark_secondary_color = get_theme_mod('dark_secondary_color', '#9161ff'); // Updated to lighter purple
+    $dark_link_color = get_theme_mod('dark_link_color', '#9161ff'); // Updated to lighter purple
+    $dark_link_hover_color = get_theme_mod('dark_link_hover_color', '#a989ff'); // Even lighter
+    $dark_menu_active_color = get_theme_mod('dark_menu_active_color', '#9161ff'); // Updated to match
+    $dark_menu_hover_color = get_theme_mod('dark_menu_hover_color', '#9161ff'); // Updated to match
     $dark_background_color = get_theme_mod('dark_background_color', '#17181e');
     $dark_text_color = get_theme_mod('dark_text_color', '#aab8c5');
-    $dark_selection_background = get_theme_mod('dark_selection_background', '#a3c1ad');
+    $dark_selection_background = get_theme_mod('dark_selection_background', '#9161ff'); // Updated to match
     $dark_selection_text = get_theme_mod('dark_selection_text', '#17181e');
     
     // Create CSS
@@ -585,18 +585,14 @@ function nova_customizer_css() {
             --bs-body-bg: {$light_background_color};
             --bs-body-color-rgb: " . implode(',', nova_hex_to_rgb($light_text_color)) . ";
             --bs-body-bg-rgb: " . implode(',', nova_hex_to_rgb($light_background_color)) . ";
+            --light-selection-bg: {$light_selection_background};
+            --light-selection-text: {$light_selection_text};
         }
         
         /* Menu customization - Light Mode */
         :root[data-menu-color=light] {
             --bs-menu-item-hover-color: {$light_menu_hover_color};
             --bs-menu-item-active-color: {$light_menu_active_color};
-        }
-        
-        /* Text selection - Light Mode */
-        :root[data-bs-theme=light] ::selection {
-            background-color: {$light_selection_background};
-            color: {$light_selection_text};
         }
         
         /* Dark Mode Variables */
@@ -613,6 +609,8 @@ function nova_customizer_css() {
             --bs-body-bg: {$dark_background_color};
             --bs-body-color-rgb: " . implode(',', nova_hex_to_rgb($dark_text_color)) . ";
             --bs-body-bg-rgb: " . implode(',', nova_hex_to_rgb($dark_background_color)) . ";
+            --dark-selection-bg: {$dark_selection_background};
+            --dark-selection-text: {$dark_selection_text};
         }
         
         /* Menu customization - Dark Mode */
@@ -622,14 +620,39 @@ function nova_customizer_css() {
             --bs-menu-item-active-color: {$dark_menu_active_color};
         }
         
-        /* Text selection - Dark Mode */
-        :root[data-bs-theme=dark] ::selection {
-            background-color: {$dark_selection_background};
-            color: {$dark_selection_text};
+        /* Apply selection variables directly to body */
+        body {
+            --selection-bg: {$light_selection_background};
+            --selection-text: {$light_selection_text};
+            data-light-selection-bg: {$light_selection_background};
+            data-light-selection-text: {$light_selection_text};
+        }
+        
+        body[data-bs-theme=dark] {
+            --selection-bg: {$dark_selection_background};
+            --selection-text: {$dark_selection_text};
+            data-dark-selection-bg: {$dark_selection_background};
+            data-dark-selection-text: {$dark_selection_text};
         }
     ";
     
     wp_add_inline_style('nova-theme', $custom_css);
+    
+    // Add a second inline style with highest priority for the selection styles
+    $selection_css = "
+        /* Direct application of selection styles */
+        ::selection {
+            background-color: var(--selection-bg, #6500ff) !important;
+            color: var(--selection-text, #ffffff) !important;
+        }
+        
+        ::-moz-selection {
+            background-color: var(--selection-bg, #6500ff) !important;
+            color: var(--selection-text, #ffffff) !important;
+        }
+    ";
+    
+    wp_add_inline_style('nova-style', $selection_css);
 }
 add_action('wp_enqueue_scripts', 'nova_customizer_css');
 

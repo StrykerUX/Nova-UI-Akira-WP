@@ -84,6 +84,9 @@ function nova_scripts() {
     
     // Main Theme Stylesheet
     wp_enqueue_style('nova-style', get_stylesheet_uri(), array(), NOVA_VERSION);
+    
+    // Selection Styles - loaded last to ensure they take priority
+    wp_enqueue_style('nova-selection-styles', NOVA_TEMPLATE_URI . '/assets/css/selection-styles.css', array('nova-style', 'nova-theme-colors'), NOVA_VERSION);
 
     // jQuery (already included with WordPress)
     wp_enqueue_script('jquery');
@@ -183,6 +186,11 @@ require NOVA_TEMPLATE_DIR . '/inc/reading-time.php';
  * Logo functions for advanced logo management
  */
 require NOVA_TEMPLATE_DIR . '/inc/logo-functions.php';
+
+/**
+ * Inline styles added to head
+ */
+require NOVA_TEMPLATE_DIR . '/inc/head-styles.php';
 
 /**
  * Menu Enhancer extension
