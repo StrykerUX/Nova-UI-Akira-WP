@@ -6,14 +6,11 @@
  * @package Nova_UI_Akira
  */
 
-// Encolar el script específico para esta plantilla
-wp_enqueue_script('nova-dashboard-template', get_template_directory_uri() . '/assets/js/pages/dashboard-template.js', array('jquery'), '1.0.0', true);
-
 get_header();
 ?>
 
-<div class="page-content dashboard-template vh-100">
-    <div class="page-container h-100">
+<div class="page-content dashboard-template">
+    <div class="page-container">
         <!-- No page title or breadcrumbs as requested -->
         <!-- Contenedor de tokens como en la imagen de referencia -->
         <div class="row dashboard-content-row">
@@ -23,7 +20,7 @@ get_header();
                     the_post();
                     ?>
                     <div class="card dashboard-card">
-                        <div class="card-body dashboard-card-body h-100">
+                        <div class="card-body dashboard-card-body">
                             <?php nova_post_thumbnail(); ?>
                             <div class="card-text dashboard-card-text">
                                 <?php the_content(); ?>

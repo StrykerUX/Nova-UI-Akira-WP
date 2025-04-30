@@ -88,9 +88,6 @@ function nova_scripts() {
     // Page Templates Styles
     wp_enqueue_style('nova-page-templates', NOVA_TEMPLATE_URI . '/assets/css/page-templates.css', array('nova-style'), NOVA_VERSION);
     
-    // Custom Dashboard Styles
-    wp_enqueue_style('nova-custom-dashboard', NOVA_TEMPLATE_URI . '/assets/css/custom-dashboard.css', array('nova-page-templates'), NOVA_VERSION);
-    
     // Selection Styles - loaded last to ensure they take priority
     wp_enqueue_style('nova-selection-styles', NOVA_TEMPLATE_URI . '/assets/css/selection-styles.css', array('nova-style', 'nova-theme-colors'), NOVA_VERSION);
 
