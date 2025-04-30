@@ -5,8 +5,8 @@
 /* Dashboard Template Styles */
 body.page-template-template-dashboard {
     overflow: hidden !important;
-    height: 100vh !important;
-    max-height: 100vh !important;
+    height: 99vh !important;
+    max-height: 99vh !important;
 }
 /* Asegura que el contenedor principal respete la altura disponible */
 .dashboard-template {
@@ -43,6 +43,7 @@ body.page-template-template-dashboard {
     display: flex;
     flex-direction: column;
     max-height: 100%;
+    margin-top: 25px;;
     overflow: hidden;
     margin-bottom: 15px;
     border-radius: 8px;
