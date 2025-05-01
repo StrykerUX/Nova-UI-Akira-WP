@@ -130,15 +130,6 @@ body.page-template-template-dashboard {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .dashboard-template{
-        overflow: visible;
-    }
-
-    .dashboard-template .page-container{
-        overflow: visible;
-        --bs-gutter-x: 0rem!important;
-    }
-
     .dashboard-template .dashboard-content-row {
         height: auto;
     }
