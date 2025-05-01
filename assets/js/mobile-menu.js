@@ -3,57 +3,103 @@
  * Handles the interaction for the responsive mobile menu
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Elements
-    const mobileMenuOverlay = document.querySelector('.nova-mobile-menu-overlay');
-    const mobileMenuToggle = document.querySelector('.nova-mobile-menu-toggle button');
-    const mobileMenuClose = document.querySelector('.nova-mobile-menu-close');
+(function($) {
+    'use strict';
     
-    // If the elements don't exist, exit
-    if (!mobileMenuOverlay || !mobileMenuToggle || !mobileMenuClose) {
-        return;
-    }
+    // Global variables
+    var body = $('body');
+    var window_width = $(window).width();
+    var mobileBreakpoint = 991;
     
-    // Open mobile menu
-    mobileMenuToggle.addEventListener('click', function() {
-        mobileMenuOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling of body
-    });
-    
-    // Close mobile menu on close button click
-    mobileMenuClose.addEventListener('click', function() {
-        closeMobileMenu();
-    });
-    
-    // Close mobile menu when clicking on the overlay (outside the menu)
-    mobileMenuOverlay.addEventListener('click', function(e) {
-        // Check if click was on the overlay and not on the menu itself
-        if (e.target === mobileMenuOverlay) {
-            closeMobileMenu();
+    // Function to handle mobile menu
+    function handleMobileMenu() {
+        // Elements
+        var $mobileMenuOverlay = $('.nova-mobile-menu-overlay');
+        var $menuToggleButton = $('.sidenav-toggle-button');
+        var $mobileMenuClose = $('.nova-mobile-menu-close');
+        
+        // Check if the elements exist
+        if (!$mobileMenuOverlay.length || !$menuToggleButton.length || !$mobileMenuClose.length) {
+            return;
         }
-    });
-    
-    // Close mobile menu when pressing Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && mobileMenuOverlay.classList.contains('active')) {
+        
+        // Modify the existing toggle button behavior based on screen size
+        $menuToggleButton.off('click'); // Remove any existing click handlers
+        $menuToggleButton.on('click', function(e) {
+            e.preventDefault();
+            
+            // If below the mobile breakpoint, toggle mobile menu
+            if (window.innerWidth <= mobileBreakpoint) {
+                $mobileMenuOverlay.addClass('active');
+                body.css('overflow', 'hidden'); // Prevent scrolling of body
+            } else {
+                // Original sidebar behavior for desktop
+                $('html').toggleClass('sidebar-enable');
+                
+                if (window_width >= 992) {
+                    var sidenavSize = $('html').attr('data-sidenav-size');
+                    
+                    if (sidenavSize === 'condensed') {
+                        $('html').attr('data-sidenav-size', 'default');
+                    } else {
+                        $('html').attr('data-sidenav-size', 'condensed');
+                    }
+                }
+            }
+        });
+        
+        // Close mobile menu when clicking close button
+        $mobileMenuClose.on('click', function() {
             closeMobileMenu();
-        }
-    });
-    
-    // Close mobile menu function
-    function closeMobileMenu() {
-        mobileMenuOverlay.classList.remove('active');
-        document.body.style.overflow = ''; // Restore body scrolling
-    }
-    
-    // Close mobile menu when clicking on a menu item
-    const mobileMenuLinks = mobileMenuOverlay.querySelectorAll('a[href]');
-    mobileMenuLinks.forEach(function(link) {
-        link.addEventListener('click', function() {
-            // Only close menu if link doesn't toggle a submenu
-            if (!link.hasAttribute('data-bs-toggle')) {
+        });
+        
+        // Close mobile menu when clicking on the overlay (outside the menu)
+        $mobileMenuOverlay.on('click', function(e) {
+            if (e.target === this) {
                 closeMobileMenu();
             }
         });
+        
+        // Close mobile menu when pressing Escape key
+        $(document).on('keydown', function(e) {
+            if (e.key === 'Escape' && $mobileMenuOverlay.hasClass('active')) {
+                closeMobileMenu();
+            }
+        });
+        
+        // Close mobile menu when clicking on a menu item
+        $mobileMenuOverlay.find('a[href]').not('[data-bs-toggle]').on('click', function() {
+            closeMobileMenu();
+        });
+        
+        // Sync dark/light mode toggle
+        $('#mobile-light-dark-mode').on('click', function() {
+            $('#light-dark-mode').trigger('click');
+        });
+    }
+    
+    // Function to close mobile menu
+    function closeMobileMenu() {
+        $('.nova-mobile-menu-overlay').removeClass('active');
+        body.css('overflow', ''); // Restore body scrolling
+    }
+    
+    // Handle window resize
+    function handleResize() {
+        $(window).on('resize', function() {
+            window_width = $(window).width();
+            
+            // If window resized to desktop size, close mobile menu
+            if (window_width > mobileBreakpoint && $('.nova-mobile-menu-overlay').hasClass('active')) {
+                closeMobileMenu();
+            }
+        });
+    }
+    
+    // Initialize when document is ready
+    $(document).ready(function() {
+        handleMobileMenu();
+        handleResize();
     });
-});
+    
+})(jQuery);

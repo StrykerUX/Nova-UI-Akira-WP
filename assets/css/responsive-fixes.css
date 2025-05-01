@@ -1,0 +1,72 @@
+/**
+ * Responsive fixes for Nova UI Akira theme
+ * These styles handle specific responsive issues
+ */
+
+/* Remove initial menu toggle button label in small screens */
+@media (max-width: 991px) {
+    /* Ensure the topbar menu stays fixed at top */
+    .app-topbar {
+        position: sticky;
+        top: 0;
+        z-index: 1030;
+    }
+
+    /* Adjust the logo size in mobile view */
+    .app-topbar .logo .logo-lg {
+        max-width: 120px;
+    }
+
+    /* Make more space available by removing margins on small screens */
+    .page-container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+}
+
+/* Ensure topbar icons aren't hidden on very small screens */
+.topbar-item .btn-icon {
+    min-width: 36px;
+    height: 36px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fix for the mobile menu with dark theme */
+[data-bs-theme=dark] .nova-mobile-menu {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+}
+[data-bs-theme=dark] .nova-mobile-menu-header {
+    border-bottom-color: var(--bs-border-color);
+}
+
+/* Proper spacing for mobile menu items */
+.mobile-side-nav .side-nav-item {
+    margin-bottom: 5px;
+}
+.mobile-side-nav .side-nav-link {
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+.mobile-side-nav .side-nav-link:hover {
+    background-color: var(--bs-menu-item-hover-bg);
+    color: var(--bs-menu-item-hover-color);
+}
+.mobile-side-nav .side-nav-link .menu-icon {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+}
+
+/* Add some spacing for the topbar elements */
+.app-topbar .d-flex.align-items-center.gap-2 {
+    flex-wrap: wrap;
+}

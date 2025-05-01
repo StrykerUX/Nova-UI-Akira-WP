@@ -129,10 +129,6 @@ body.page-template-template-dashboard {
 }
 
 /* Mobile Menu Styles */
-.nova-mobile-menu-toggle {
-    display: none;
-}
-
 .nova-mobile-menu-overlay {
     position: fixed;
     top: 0;
@@ -163,6 +159,8 @@ body.page-template-template-dashboard {
     z-index: 10000;
     overflow-y: auto;
     transition: right 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
 }
 
 .nova-mobile-menu-overlay.active .nova-mobile-menu {
@@ -175,10 +173,15 @@ body.page-template-template-dashboard {
     align-items: center;
     padding: 15px;
     border-bottom: 1px solid var(--bs-border-color);
+    background-color: var(--bs-body-bg);
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .nova-mobile-menu-header h5 {
     margin: 0;
+    font-weight: 600;
 }
 
 .nova-mobile-menu-close {
@@ -192,6 +195,8 @@ body.page-template-template-dashboard {
 
 .nova-mobile-menu-content {
     padding: 15px;
+    overflow-y: auto;
+    flex-grow: 1;
 }
 
 .nova-mobile-sidebar-menu h6,
@@ -206,24 +211,39 @@ body.page-template-template-dashboard {
     margin-top: 30px;
 }
 
-.mobile-topbar-item .topbar-link {
+.mobile-topbar-item .btn {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
-.mobile-topbar-item .btn i {
-    margin-right: 5px;
+.mobile-side-nav {
+    padding-left: 0;
+}
+
+.mobile-side-nav .sub-menu {
+    padding-left: 20px;
+}
+
+/* Animation for mobile menu */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.nova-mobile-menu-overlay.active .nova-mobile-menu {
+    animation: slideInRight 0.3s forwards;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 991px) {
-    .info-sidebar {
-        display: none;
-    }
-    
-    .nova-mobile-menu-toggle {
-        display: block;
+    /* Hide sidebar in responsive mode */
+    .sidenav-menu {
+        display: none !important;
     }
     
     /* Remove overflow hidden on mobile for better usability */
@@ -251,6 +271,10 @@ body.page-template-template-dashboard {
         overflow: visible;
     }
     
+    .dashboard-template .dashboard-content-col {
+        overflow: visible;
+    }
+    
     .dashboard-template .dashboard-card {
         max-height: none;
         overflow: visible;
@@ -266,5 +290,15 @@ body.page-template-template-dashboard {
     
     .ia-chat-template .ia-chat-card-body {
         overflow: visible;
+    }
+    
+    /* Make the content take full width when sidebar is hidden */
+    .info-sidebar {
+        display: none !important;
+    }
+    
+    /* Adjust topbar for mobile */
+    .sidenav-toggle-button {
+        margin-right: 0;
     }
 }
