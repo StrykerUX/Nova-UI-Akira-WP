@@ -160,6 +160,10 @@ function nova_widgets_init() {
 }
 add_action('widgets_init', 'nova_widgets_init');
 
+function nova_enqueue_custom_scripts() {
+    wp_enqueue_script('nova-custom-js', get_template_directory_uri() . '/assets/js/custom.js', array('jquery'), '1.0', true);
+}
+add_action('wp_enqueue_scripts', 'nova_enqueue_custom_scripts');
 /**
  * Custom template tags
  */
