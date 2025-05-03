@@ -6,10 +6,14 @@
  * @package Nova_UI_Akira
  */
 
+// Enqueue responsive dashboard styles and script
+wp_enqueue_style('responsive-dashboard', get_template_directory_uri() . '/assets/css/responsive-dashboard.css', array(), '1.0.0');
+wp_enqueue_script('responsive-dashboard', get_template_directory_uri() . '/assets/js/responsive-dashboard.js', array('jquery'), '1.0.0', true);
+
 get_header();
 
-// Include the mobile menu template
-include(get_template_directory() . '/page-templates/nova-mobile-menu.php');
+// Include the mobile header and menu
+get_template_part('template-parts/mobile-header-menu');
 ?>
 
 <div class="page-content ia-chat-template">

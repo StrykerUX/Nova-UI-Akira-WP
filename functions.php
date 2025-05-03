@@ -88,9 +88,6 @@ function nova_scripts() {
     // Page Templates Styles
     wp_enqueue_style('nova-page-templates', NOVA_TEMPLATE_URI . '/assets/css/page-templates.css', array('nova-style'), NOVA_VERSION);
     
-    // Responsive Fixes
-    wp_enqueue_style('nova-responsive-fixes', NOVA_TEMPLATE_URI . '/assets/css/responsive-fixes.css', array('nova-style', 'nova-page-templates'), NOVA_VERSION);
-    
     // Selection Styles - loaded last to ensure they take priority
     wp_enqueue_style('nova-selection-styles', NOVA_TEMPLATE_URI . '/assets/css/selection-styles.css', array('nova-style', 'nova-theme-colors'), NOVA_VERSION);
 
@@ -109,9 +106,6 @@ function nova_scripts() {
 
     // Main JS
     wp_enqueue_script('nova-app', NOVA_TEMPLATE_URI . '/assets/js/app.js', array('jquery', 'bootstrap-bundle', 'simplebar'), NOVA_VERSION, true);
-
-    // Mobile Menu JS
-    wp_enqueue_script('nova-mobile-menu', NOVA_TEMPLATE_URI . '/assets/js/mobile-menu.js', array('jquery'), NOVA_VERSION, true);
 
     // Comment Reply
     if (is_singular() && comments_open() && get_option('thread_comments')) {
