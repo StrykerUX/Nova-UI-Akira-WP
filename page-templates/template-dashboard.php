@@ -6,19 +6,13 @@
  * @package Nova_UI_Akira
  */
 
-// Enqueue responsive dashboard styles and script
-wp_enqueue_style('responsive-dashboard', get_template_directory_uri() . '/assets/css/responsive-dashboard.css', array(), '1.0.0');
-wp_enqueue_script('responsive-dashboard', get_template_directory_uri() . '/assets/js/responsive-dashboard.js', array('jquery'), '1.0.0', true);
-
 get_header();
-
-// Include the mobile header and menu
-get_template_part('template-parts/mobile-header-menu');
 ?>
 
 <div class="page-content dashboard-template">
     <div class="page-container">
         <!-- No page title or breadcrumbs as requested -->
+        <!-- Contenedor de tokens como en la imagen de referencia -->
         <div class="row dashboard-content-row">
             <div class="col dashboard-content-col">
                 <?php
