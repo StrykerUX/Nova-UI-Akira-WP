@@ -344,7 +344,7 @@ class Nova_Mobile_Menu {
         // Enable Mobile Menu
         $wp_customize->add_setting('nova_enable_mobile_menu', array(
             'default'           => true,
-            'sanitize_callback' => 'nova_sanitize_checkbox',
+            'sanitize_callback' => 'nova_sanitize_checkbox', // This function is already defined in customizer.php
         ));
         
         $wp_customize->add_control('nova_enable_mobile_menu', array(
@@ -353,13 +353,6 @@ class Nova_Mobile_Menu {
             'type'     => 'checkbox',
         ));
     }
-}
-
-/**
- * Helper function to sanitize checkbox
- */
-function nova_sanitize_checkbox($checked) {
-    return ((isset($checked) && true == $checked) ? true : false);
 }
 
 // Initialize the mobile menu
