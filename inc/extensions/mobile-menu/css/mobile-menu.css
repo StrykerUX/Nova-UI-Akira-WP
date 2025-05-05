@@ -17,7 +17,7 @@
     height: 60px;
     background-color: var(--bs-body-bg);
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    z-index: 1030;
+    z-index: 1040;
     display: none;
     border-top: 1px solid var(--bs-border-color-translucent);
 }
@@ -115,15 +115,78 @@
     gap: 10px;
 }
 
+.mobile-more-menu-utils .btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    width: 44px;
+    margin: 0 auto;
+    padding: 0;
+    font-size: 20px;
+}
+
 /* Show mobile navigation on small screens only */
 @media (max-width: 767.98px) {
+    /* Show mobile bottom navigation */
     .mobile-bottom-nav {
         display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1040;
     }
     
+    /* Add padding to body to account for fixed nav */
     body {
-        padding-bottom: 60px; /* Add padding to body to account for fixed nav */
+        padding-bottom: 60px;
     }
+    
+    /* Hide sidebar on mobile */
+    .sidenav-menu {
+        display: none !important;
+    }
+    
+    /* Adjust main content container */
+    .content-page {
+        margin-left: 0 !important;
+        width: 100% !important;
+        overflow-x: hidden;
+    }
+    
+    /* Fix horizontal scroll */
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    /* Modify topbar for mobile */
+    .app-topbar {
+        left: 0 !important;
+        width: 100% !important;
+    }
+}
+
+/* Make menu fixed to the viewport bottom */
+.mobile-view {
+    margin-bottom: 60px !important; /* Additional space for mobile menu */
+}
+
+/* Override theme styles that might interfere with the mobile menu */
+.mobile-view .content-page {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    width: 100% !important;
+}
+
+.mobile-view .sidenav-menu {
+    display: none !important;
+}
+
+.mobile-view .app-topbar {
+    left: 0 !important;
+    width: 100% !important;
 }
 
 /* Dark mode adjustments */

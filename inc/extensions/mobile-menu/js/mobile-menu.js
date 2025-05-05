@@ -12,6 +12,52 @@
     'use strict';
     
     document.addEventListener('DOMContentLoaded', function() {
+        // Adjust layout for mobile screens
+        function adjustForMobile() {
+            // Check if we're on a mobile screen
+            if (window.innerWidth < 768) {
+                // Add a class to the body for mobile-specific styling
+                document.body.classList.add('mobile-view');
+                
+                // Force content-page to have left margin 0
+                const contentPage = document.querySelector('.content-page');
+                if (contentPage) {
+                    contentPage.style.marginLeft = '0';
+                    contentPage.style.width = '100%';
+                }
+                
+                // Force topbar to be full width
+                const topbar = document.querySelector('.app-topbar');
+                if (topbar) {
+                    topbar.style.left = '0';
+                    topbar.style.width = '100%';
+                }
+            } else {
+                // Remove the mobile view class when on larger screens
+                document.body.classList.remove('mobile-view');
+                
+                // Reset styles on larger screens
+                const contentPage = document.querySelector('.content-page');
+                const topbar = document.querySelector('.app-topbar');
+                
+                if (contentPage) {
+                    contentPage.style.marginLeft = '';
+                    contentPage.style.width = '';
+                }
+                
+                if (topbar) {
+                    topbar.style.left = '';
+                    topbar.style.width = '';
+                }
+            }
+        }
+        
+        // Run on page load
+        adjustForMobile();
+        
+        // Run on resize
+        window.addEventListener('resize', adjustForMobile);
+        
         // Toggle More Menu
         const moreMenuToggle = document.getElementById('more-menu-toggle');
         const moreMenu = document.querySelector('.mobile-more-menu');

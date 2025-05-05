@@ -187,14 +187,14 @@ class Nova_Mobile_Menu {
         // Add mobile utility buttons
         echo '<div class="mobile-more-menu-utils">';
         
-        // Dark/Light mode toggle
-        echo '<button id="mobile-dark-light-toggle" class="btn btn-outline-primary">';
-        echo '<i class="ti ti-moon me-2"></i>' . esc_html__('Dark/Light Mode', 'nova-ui-akira');
+        // Dark/Light mode toggle - Icon only
+        echo '<button id="mobile-dark-light-toggle" class="btn btn-outline-primary btn-icon">';
+        echo '<i class="ti ti-moon"></i>';
         echo '</button>';
         
-        // Search button
-        echo '<button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#searchModal">';
-        echo '<i class="ti ti-search me-2"></i>' . esc_html__('Search', 'nova-ui-akira');
+        // Search button - Icon only
+        echo '<button class="btn btn-outline-primary btn-icon" data-bs-toggle="modal" data-bs-target="#searchModal">';
+        echo '<i class="ti ti-search"></i>';
         echo '</button>';
         
         echo '</div>'; // .mobile-more-menu-utils
