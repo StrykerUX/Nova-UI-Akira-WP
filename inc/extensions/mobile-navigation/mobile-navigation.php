@@ -133,11 +133,12 @@ Nova_Mobile_Navigation::get_instance();
 /**
  * Add action hooks to dashboard templates
  */
-add_action('wp_footer', function() {
-    // Only add for dashboard templates
-    if (is_page_template('page-templates/template-dashboard.php') || 
-        is_page_template('page-templates/template-dashboard-overflow.php')) {
-        do_action('nova_after_dashboard_content');
-        do_action('nova_after_dashboard_overflow_content');
-    }
-}, 999);
+add_action('nova_after_dashboard_template', function() {
+    // Add mobile navigation to Dashboard template
+    do_action('nova_after_dashboard_content');
+});
+
+add_action('nova_after_dashboard_overflow_template', function() {
+    // Add mobile navigation to Dashboard Overflow template
+    do_action('nova_after_dashboard_overflow_content');
+});

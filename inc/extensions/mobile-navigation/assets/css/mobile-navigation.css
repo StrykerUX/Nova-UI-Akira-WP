@@ -3,7 +3,10 @@
  */
 
 /* Base styles - hide mobile navigation on desktop */
-.nova-mobile-nav,
+.nova-mobile-nav {
+    display: none;
+}
+
 .nova-mobile-menu-overlay {
     display: none;
 }
@@ -20,12 +23,36 @@
     /* Adjust content area to full width */
     body.has-mobile-navigation .wrapper {
         padding-left: 0 !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
     }
     
     body.has-mobile-navigation .dashboard-template .dashboard-content-row,
     body.has-mobile-navigation .dashboard-overflow-template .dashboard-overflow-content-row {
         margin-left: 0 !important;
         margin-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    body.has-mobile-navigation .dashboard-template .page-container,
+    body.has-mobile-navigation .dashboard-overflow-template .page-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    
+    body.has-mobile-navigation .dashboard-content-col,
+    body.has-mobile-navigation .dashboard-overflow-content-col {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Hide sidebar column */
+    body.has-mobile-navigation .info-sidebar {
+        display: none !important;
     }
     
     /* Add padding at the bottom for the mobile nav */
@@ -98,12 +125,14 @@
         background-color: var(--bs-body-bg, #fff);
         z-index: 1040;
         overflow-y: auto;
-        transform: translateY(100%);
-        transition: transform 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
     }
     
     .nova-mobile-menu-overlay.active {
-        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
         display: block;
     }
     
