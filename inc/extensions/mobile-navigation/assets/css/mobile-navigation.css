@@ -58,6 +58,8 @@
     /* Add padding at the bottom for the mobile nav */
     body.has-mobile-navigation .page-content {
         padding-bottom: 60px !important;
+        margin-left: none!important;
+        padding: 0 0rem!important;
     }
     
     /* Show the mobile navigation */
