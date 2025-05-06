@@ -6,6 +6,9 @@
  * @package Nova_UI_Akira
  */
 
+// Allow extensions to modify behavior before header
+do_action('nova_before_dashboard_overflow_template');
+
 get_header();
 ?>
 
@@ -66,7 +69,12 @@ body.page-template-template-dashboard-overflow {
 }
 </style>
 
-<?php wp_footer(); ?>
+<?php 
+// Hook for extensions to add content after dashboard overflow template (e.g., mobile navigation)
+do_action('nova_after_dashboard_overflow_template');
+
+wp_footer(); 
+?>
 
 </body>
 </html>

@@ -6,6 +6,9 @@
  * @package Nova_UI_Akira
  */
 
+// Allow extensions to modify behavior before header
+do_action('nova_before_dashboard_template');
+
 get_header();
 ?>
 
@@ -59,7 +62,12 @@ get_header();
 ?>
     </div> <!-- End wrapper -->
 
-<?php wp_footer(); ?>
+<?php 
+// Hook for extensions to add content after dashboard template (e.g., mobile navigation)
+do_action('nova_after_dashboard_template');
+
+wp_footer(); 
+?>
 
 </body>
 </html>

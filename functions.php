@@ -203,6 +203,11 @@ require NOVA_TEMPLATE_DIR . '/inc/head-styles.php';
  */
 require NOVA_TEMPLATE_DIR . '/inc/extensions/menu-enhancer/menu-enhancer.php';
 
+/**
+ * Mobile Navigation extension for Dashboard templates
+ */
+require NOVA_TEMPLATE_DIR . '/inc/extensions/mobile-navigation/mobile-navigation.php';
+
 // La función nova_get_custom_logo ha sido eliminada para evitar conflictos
 // Ahora usamos nova_get_advanced_logo() o nova_get_theme_logo() para gestionar los logotipos
 
