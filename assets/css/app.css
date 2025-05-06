@@ -21,13 +21,7 @@ File: App Css File
   --bs-menu-item-padding-y: 10px;
   --bs-menu-item-item-gap: 2px;
 }
-@media (max-width: 991px) {
-  :root{
-    --bs-sidenav-width: 0px;
-    --bs-sidenav-width-md: 0px;
-    --bs-sidenav-width-sm: 0px;
-  }
-}
+
 :root[data-bs-theme=dark] {
   --bs-light: #252630;
   --bs-light-rgb: 37, 38, 48;
@@ -265,7 +259,13 @@ File: App Css File
   --bs-form-invalid-color: #f4a0a0;
   --bs-form-invalid-border-color: #f4a0a0;
 }
-
+@media (max-width: 991px) {
+  :root{
+    --bs-sidenav-width: 0px!important;
+    --bs-sidenav-width-md: 0px!important;
+    --bs-sidenav-width-sm: 0px!important;
+  }
+}
 *,
 *::before,
 *::after {
