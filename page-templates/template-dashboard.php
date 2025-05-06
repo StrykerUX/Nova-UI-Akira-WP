@@ -59,12 +59,7 @@ get_header();
 ?>
     </div> <!-- End wrapper -->
 
-<?php 
-// Include mobile navigation for responsive view
-get_template_part('inc/mobile-navigation');
-
-wp_footer(); 
-?>
+<?php wp_footer(); ?>
 
 </body>
 </html>
