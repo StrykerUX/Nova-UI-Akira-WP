@@ -24,6 +24,8 @@ body.page-template-template-dashboard {
     max-height: 100%;
     overflow: hidden;
     margin-bottom: 25px!important;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
 }
 .dashboard-template .dashboard-content-row {
     height: 100%;
@@ -145,5 +147,20 @@ body.page-template-template-dashboard {
     
     .ia-chat-template .ia-chat-content-row {
         min-height: auto;
+    }
+}
+
+@media (max-width: 991px) {
+    .dashboard-template {
+        height: calc(100vh - 120px);
+        max-height: calc(100vh - 60px);
+        overflow: hidden;
+        min-height: calc(90vh - var(--bs-topbar-height))!important;
+        margin-left: var(--bs-sidenav-width)!important;
+        padding: 0 0rem!important;
+    }
+    .page-content.dashboard-template{
+        margin-left: var(--bs-sidenav-width)!important;
+        padding: 0 0rem!important;
     }
 }
