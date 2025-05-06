@@ -25,10 +25,12 @@ function nova_setup() {
 
     // Register navigation menus
     register_nav_menus(array(
-        'primary'   => esc_html__('Primary Menu', 'nova-ui-akira'),
-        'topbar'    => esc_html__('Topbar Menu', 'nova-ui-akira'),
-        'footer'    => esc_html__('Footer Menu', 'nova-ui-akira'),
-        'user_menu' => esc_html__('User Dropdown Menu', 'nova-ui-akira'),
+        'primary'     => esc_html__('Primary Menu', 'nova-ui-akira'),
+        'topbar'      => esc_html__('Topbar Menu', 'nova-ui-akira'),
+        'footer'      => esc_html__('Footer Menu', 'nova-ui-akira'),
+        'user_menu'   => esc_html__('User Dropdown Menu', 'nova-ui-akira'),
+        'mobile_main' => esc_html__('Mobile Main Menu', 'nova-ui-akira'),
+        'mobile_icons'=> esc_html__('Mobile Icons Menu (Icons Only)', 'nova-ui-akira'),
     ));
 
     // Switch default core markup to output valid HTML5
@@ -231,3 +233,12 @@ function nova_add_page_templates($templates) {
     
     return $templates;
 }
+
+/**
+ * Enqueue mobile navigation styles and scripts
+ */
+function nova_enqueue_mobile_navigation() {
+    wp_enqueue_style('nova-mobile-styles', NOVA_TEMPLATE_URI . '/assets/css/mobile-styles.css', array('nova-style'), NOVA_VERSION);
+    wp_enqueue_script('nova-mobile-navigation', NOVA_TEMPLATE_URI . '/assets/js/mobile-navigation.js', array('jquery'), NOVA_VERSION, true);
+}
+add_action('wp_enqueue_scripts', 'nova_enqueue_mobile_navigation');

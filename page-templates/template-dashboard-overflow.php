@@ -66,7 +66,12 @@ body.page-template-template-dashboard-overflow {
 }
 </style>
 
-<?php wp_footer(); ?>
+<?php 
+// Include mobile navigation for responsive view
+get_template_part('inc/mobile-navigation');
+
+wp_footer(); 
+?>
 
 </body>
 </html>
