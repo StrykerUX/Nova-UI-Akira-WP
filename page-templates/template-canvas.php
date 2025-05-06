@@ -18,14 +18,12 @@
 <body <?php body_class('canvas-template'); ?>>
 <?php wp_body_open(); ?>
 
-<div class="canvas-content">
-    <?php
-    while (have_posts()) :
-        the_post();
-        the_content();
-    endwhile;
-    ?>
-</div>
+<?php
+while (have_posts()) :
+    the_post();
+    the_content();
+endwhile;
+?>
 
 <?php wp_footer(); ?>
 </body>

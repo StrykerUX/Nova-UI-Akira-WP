@@ -88,6 +88,9 @@ function nova_scripts() {
     // Page Templates Styles
     wp_enqueue_style('nova-page-templates', NOVA_TEMPLATE_URI . '/assets/css/page-templates.css', array('nova-style'), NOVA_VERSION);
     
+    // Custom Template Styles
+    wp_enqueue_style('nova-template-styles', NOVA_TEMPLATE_URI . '/assets/css/template-styles.css', array('nova-style'), NOVA_VERSION);
+    
     // Selection Styles - loaded last to ensure they take priority
     wp_enqueue_style('nova-selection-styles', NOVA_TEMPLATE_URI . '/assets/css/selection-styles.css', array('nova-style', 'nova-theme-colors'), NOVA_VERSION);
 
@@ -217,17 +220,14 @@ add_action('after_setup_theme', 'nova_register_page_templates');
  * Add custom page templates to the list of available templates
  */
 function nova_add_page_templates($templates) {
-    // Plantilla Dashboard
+    // Dashboard Template
     $templates['page-templates/template-dashboard.php'] = esc_html__('Dashboard', 'nova-ui-akira');
     
-    // Plantilla Canvas
+    // Canvas Template
     $templates['page-templates/template-canvas.php'] = esc_html__('Canvas', 'nova-ui-akira');
     
-    // Plantilla IA Chat
-    $templates['page-templates/template-ia-chat.php'] = esc_html__('IA Chat', 'nova-ui-akira');
-    
-    // Plantilla Quick Link
-    $templates['page-templates/template-quick-link.php'] = esc_html__('Quick Link', 'nova-ui-akira');
+    // Dashboard Overflow Template
+    $templates['page-templates/template-dashboard-overflow.php'] = esc_html__('Dashboard Overflow', 'nova-ui-akira');
     
     return $templates;
 }

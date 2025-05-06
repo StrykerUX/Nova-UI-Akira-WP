@@ -1,0 +1,58 @@
+/**
+ * Nova UI Akira - Custom Template Styles
+ */
+
+/* Default Template Styles */
+.default-template {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.default-template-content {
+    flex: 1;
+}
+
+.default-template-footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    color: inherit;
+    background: transparent;
+}
+
+.default-template-footer a {
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit;
+    transition: opacity 0.3s ease;
+}
+
+.default-template-footer a:hover {
+    opacity: 0.8;
+}
+
+/* Canvas Template - Completely empty */
+.canvas-template {
+    margin: 0;
+    padding: 0;
+}
+
+/* Dashboard Overflow Template - Allow vertical scrolling */
+body.page-template-template-dashboard-overflow {
+    overflow-y: auto !important; 
+    overflow-x: hidden !important;
+}
+
+.dashboard-overflow-template {
+    min-height: initial !important;
+    height: auto !important;
+}
+
+.dashboard-overflow-content-row,
+.dashboard-overflow-content-col,
+.dashboard-overflow-card,
+.dashboard-overflow-card-body {
+    height: auto !important;
+    min-height: initial !important;
+}

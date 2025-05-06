@@ -1,73 +1,40 @@
 <?php
 /**
- * The template for displaying all pages
+ * The template for displaying all pages (default template)
+ * Description: A minimal template without header, footer, or sidebar - like Quick Link but with a special footer.
  *
  * @package Nova_UI_Akira
  */
+?><!doctype html>
+<html <?php language_attributes(); ?>>
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+    <?php wp_head(); ?>
+</head>
 
-get_header();
-?>
+<body <?php body_class('default-template'); ?>>
+<?php wp_body_open(); ?>
 
-<div class="page-content">
-    <div class="page-container">
-        <div class="row">
-            <div class="col-12">
-                <div class="page-title-head d-flex align-items-sm-center flex-sm-row flex-column">
-                    <div class="flex-grow-1">
-                        <h4 class="fs-18 text-uppercase fw-bold m-0"><?php echo get_the_title(); ?></h4>
-                    </div>
-                    <div class="mt-3 mt-sm-0">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('Home', 'nova-ui-akira'); ?></a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><?php the_title(); ?></li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="default-template-content">
+    <?php
+    while (have_posts()) :
+        the_post();
+        the_content();
+    endwhile;
+    ?>
+</div>
 
-        <div class="row">
-            <div class="col">
-                <?php
-                while (have_posts()) :
-                    the_post();
-                    ?>
-                    <div class="card">
-                        <div class="card-body">
-                            <?php nova_post_thumbnail(); ?>
-                            <div class="card-text">
-                                <?php the_content(); ?>
-                            </div>
-                            <?php
-                            wp_link_pages(
-                                array(
-                                    'before' => '<div class="page-links mt-4 pt-3 border-top">' . esc_html__('Pages:', 'nova-ui-akira'),
-                                    'after'  => '</div>',
-                                )
-                            );
-                            ?>
-                        </div>
-                    </div>
-
-                    <?php
-                    // If comments are open or we have at least one comment, load up the comment template.
-                    if (comments_open() || get_comments_number()) :
-                        echo '<div class="card mt-4">';
-                        echo '<div class="card-body">';
-                        comments_template();
-                        echo '</div>';
-                        echo '</div>';
-                    endif;
-                endwhile; // End of the loop.
-                ?>
-            </div>
-
-            <?php get_sidebar(); ?>
+<!-- Default Template Footer -->
+<div class="default-template-footer">
+    <div class="container">
+        <div class="text-center py-3">
+            <?php esc_html_e('Potenciado por', 'nova-ui-akira'); ?> <a href="https://novalabss.com" target="_blank" rel="noopener">NovaLabss</a>
         </div>
     </div>
 </div>
 
-<?php
-get_footer();
+<?php wp_footer(); ?>
+</body>
+</html>
