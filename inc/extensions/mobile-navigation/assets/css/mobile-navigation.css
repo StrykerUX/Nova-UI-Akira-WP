@@ -281,3 +281,16 @@
 [data-bs-theme=dark] .nova-mobile-menu-icons {
     border-top-color: var(--bs-border-color, #444);
 }
+
+
+/* for good responsive*/
+@media (max-width: 991px) {
+    .page-content{
+        margin-left:none!important;
+        padding:0 0rem;
+    }
+    .page-container{
+        padding-right: calc(var(--bs-gutter-x) * .3)!important;
+        padding-left: calc(var(--bs-gutter-x) * .25)!important;
+    }
+}
