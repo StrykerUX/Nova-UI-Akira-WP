@@ -15330,7 +15330,12 @@ html[data-bs-theme=dark] .app-topbar .logo .logo-dark {
   min-height: calc(100vh - var(--bs-topbar-height));
   padding: 0 1rem;
 }
-
+@media (max-width: 991px) {
+  .page-content{
+      margin-left: none!important;
+      padding: 0 0rem!important;
+  }
+}
 .logo-lg img {
   height: var(--bs-logo-lg-height);
 }
