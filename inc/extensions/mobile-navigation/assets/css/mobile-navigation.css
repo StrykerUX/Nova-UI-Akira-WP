@@ -2,6 +2,15 @@
  * Mobile Navigation Styles for Nova UI Akira
  */
 
+/* Responsive CSS variable overrides */
+@media (max-width: 991px) {
+    :root {
+        --bs-sidenav-width: 0px;
+        --bs-sidenav-width-md: 0px;
+        --bs-sidenav-width-sm: 0px;
+    }
+}
+
 /* Base styles - hide mobile navigation on desktop */
 .nova-mobile-nav {
     display: none;

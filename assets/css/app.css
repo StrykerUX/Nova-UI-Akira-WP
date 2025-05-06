@@ -261,9 +261,9 @@ File: App Css File
 }
 @media (max-width: 991px) {
   :root{
-    --bs-sidenav-width: 0px!important;
-    --bs-sidenav-width-md: 0px!important;
-    --bs-sidenav-width-sm: 0px!important;
+    --bs-sidenav-width: 0px;
+    --bs-sidenav-width-md: 0px;
+    --bs-sidenav-width-sm: 0px;
   }
 }
 *,
