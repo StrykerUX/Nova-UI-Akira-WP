@@ -151,14 +151,14 @@ body.page-template-template-dashboard {
 }
 
 @media (max-width: 991px) {
-    .dashboard-template {
+    .dashboard-template,.page-content{
         overflow: hidden;
         min-height: calc(90vh - var(--bs-topbar-height))!important;
         margin-left: none!important;
         padding: 0 0rem!important;
     }
     .page-content.dashboard-template{
-        padding-right: calc(var(--bs-gutter-x) * .3);
-        padding-left: calc(var(--bs-gutter-x) * .25);
+        padding-right: calc(var(--bs-gutter-x) * .3)!important;
+        padding-left: calc(var(--bs-gutter-x) * .25)!important;
     }
 }
