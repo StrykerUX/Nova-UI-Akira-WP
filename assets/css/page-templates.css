@@ -151,9 +151,11 @@ body.page-template-template-dashboard {
         max-height:none!important;
         overflow: hidden;
         min-height: calc(90vh - var(--bs-topbar-height))!important;
+        height: auto!important  ;
     }
     .page-content.dashboard-template{
         min-height: calc(90vh - var(--bs-topbar-height))!important;
+        height: auto!important;
     }
 }
 
