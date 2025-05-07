@@ -131,21 +131,7 @@ body.page-template-template-dashboard {
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
-    .dashboard-template .dashboard-content-row {
-        height: auto;
-    }
-    .dashboard-template .dashboard-card {
-        max-height: none;
-        overflow: visible;
-    }
-    .dashboard-template .dashboard-card-body {
-        overflow: visible;
-    }
-    .ia-chat-template .ia-chat-content-row {
-        min-height: auto;
-    }
-}
+
 
 @media (max-width: 991px) {
     .dashboard-template,.page-content{
@@ -159,5 +145,30 @@ body.page-template-template-dashboard {
         padding-right: calc(var(--bs-gutter-x) * .3)!important;
         padding-left: calc(var(--bs-gutter-x) * .25)!important;
         max-height: none!important;
+    }
+    .dashboard-template {
+        height: 100%!important;
+        max-height:none!important;
+        overflow: hidden;
+        min-height: calc(90vh - var(--bs-topbar-height))!important;
+    }
+    .page-content.dashboard-template{
+        min-height: calc(90vh - var(--bs-topbar-height))!important;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-template .dashboard-content-row {
+        height: auto;
+    }
+    .dashboard-template .dashboard-card {
+        max-height: none;
+        overflow: visible;
+    }
+    .dashboard-template .dashboard-card-body {
+        overflow: visible;
+    }
+    .ia-chat-template .ia-chat-content-row {
+        min-height: auto;
     }
 }
