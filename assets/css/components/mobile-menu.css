@@ -1,0 +1,158 @@
+/**
+ * Nova UI Akira - Mobile Menu Styles
+ */
+
+/* Mobile Bottom Navigation */
+.mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030; /* High z-index to stay on top */
+    background-color: var(--bs-body-bg);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    height: 60px;
+}
+
+.mobile-bottom-nav .nav-item {
+    flex: 1;
+    text-align: center;
+}
+
+.mobile-bottom-nav .nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--bs-secondary);
+    font-size: 0.75rem;
+    padding: 0;
+}
+
+.mobile-bottom-nav .nav-link i {
+    font-size: 1.25rem;
+    margin-bottom: 2px;
+}
+
+.mobile-bottom-nav .nav-link.active {
+    color: var(--bs-primary);
+}
+
+/* Fullscreen Menu */
+.fullscreen-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 60px; /* Space for bottom nav */
+    background-color: var(--bs-body-bg);
+    z-index: 1029; /* Just below the bottom navbar */
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    transform: translateY(100%); /* Hidden by default */
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+}
+
+.fullscreen-menu.show {
+    transform: translateY(0);
+}
+
+.fullscreen-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--bs-border-color);
+}
+
+.fullscreen-menu-logo {
+    max-width: 180px;
+}
+
+.fullscreen-menu-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--bs-secondary);
+    cursor: pointer;
+}
+
+.fullscreen-menu-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 2rem;
+}
+
+.fullscreen-menu-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fullscreen-menu-nav li {
+    margin-bottom: 1rem;
+}
+
+.fullscreen-menu-nav a {
+    color: var(--bs-body-color);
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.fullscreen-menu-nav a i {
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    width: 24px;
+    text-align: center;
+}
+
+.fullscreen-menu-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--bs-border-color);
+}
+
+.fullscreen-menu-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.fullscreen-menu-actions button {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--bs-border-color);
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+}
+
+/* Fade-out animation override */
+.fullscreen-menu.hiding {
+    transform: translateY(100%);
+}
+
+/* Adjust main content area for mobile */
+@media (max-width: 767.98px) {
+    body {
+        padding-bottom: 60px; /* Space for bottom nav */
+    }
+    
+    .wrapper {
+        padding-bottom: 0;
+    }
+}
