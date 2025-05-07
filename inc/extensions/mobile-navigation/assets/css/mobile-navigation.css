@@ -132,11 +132,12 @@
         top: 0;
         left: 0;
         right: 0;
-        bottom: 0;
+        bottom: 60px; /* Deja espacio para la barra de navegación inferior */
         background-color: var(--bs-body-bg, #fff);
         z-index: 1040;
         overflow-y: auto;
-        transition: all 0.3s ease-in-out;
+        transform: translateY(100%);
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
         opacity: 0;
         visibility: hidden;
     }
@@ -145,6 +146,7 @@
         opacity: 1;
         visibility: visible;
         display: block;
+        transform: translateY(0);
     }
     
     /* Menu container */
@@ -164,11 +166,11 @@
     }
     
     .nova-mobile-menu-logo {
-        max-width: 180px;
+        max-width: 220px;
     }
     
     .nova-mobile-menu-logo img {
-        max-height: 40px;
+        max-height: 50px;
         width: auto;
     }
     
@@ -184,8 +186,13 @@
     /* Menu content */
     .nova-mobile-menu-content {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
         overflow-y: auto;
         margin-bottom: 30px;
+        padding-bottom: 80px; /* Espacio para que no quede tapado por la barra */
     }
     
     /* Mobile menu list */
@@ -202,10 +209,10 @@
     .nova-mobile-menu-list a {
         display: block;
         color: var(--bs-body-color, #333);
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 500;
         text-decoration: none;
-        padding: 8px 0;
+        padding: 10px 0;
         transition: color 0.2s;
     }
     
@@ -234,35 +241,46 @@
     
     /* Icon menu at bottom */
     .nova-mobile-menu-icons {
-        padding-top: 15px;
-        border-top: 1px solid var(--bs-border-color, #dee2e6);
+        position: absolute;
+        bottom: 80px; /* Ajustar según necesidad para que quede por encima de la barra */
+        right: 20px;
+        padding: 0;
+        border-top: none;
     }
     
     .nova-mobile-icons-list {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
+        gap: 10px;
         list-style: none;
         padding: 0;
         margin: 0;
     }
     
     .nova-mobile-icons-list li {
-        margin: 0 15px;
+        margin: 0;
     }
     
     .nova-mobile-icon-btn {
-        background: transparent;
-        border: none;
-        color: var(--bs-body-color, #666);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: var(--bs-border-radius, 0.3rem);
+        border: 1px solid var(--bs-border-color, #dee2e6);
+        background-color: var(--bs-secondary-bg, #fff);
+        color: var(--bs-body-color, #333);
         font-size: 22px;
-        padding: 10px;
+        padding: 0;
         cursor: pointer;
-        transition: color 0.2s;
+        transition: all 0.2s;
     }
     
     .nova-mobile-icon-btn:hover,
     .nova-mobile-icon-btn:active,
     .nova-mobile-icon-btn:focus {
+        background-color: var(--bs-light, #f8f9fa);
         color: var(--bs-primary, #3071a9);
     }
     

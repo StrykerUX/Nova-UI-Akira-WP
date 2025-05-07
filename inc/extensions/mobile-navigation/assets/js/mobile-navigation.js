@@ -12,7 +12,13 @@
         // Toggle mobile menu
         $('#nova-mobile-menu-toggle').on('click', function(e) {
             e.preventDefault();
-            toggleMobileMenu(true);
+            
+            // Si el menú ya está abierto, cerrarlo en lugar de abrirlo
+            if ($('.nova-mobile-menu-overlay').hasClass('active')) {
+                toggleMobileMenu(false);
+            } else {
+                toggleMobileMenu(true);
+            }
         });
         
         // Close mobile menu
@@ -49,24 +55,22 @@
             console.log('Toggle Mobile Menu: ' + (show ? 'show' : 'hide'));
             
             if (show) {
-                // Show menu overlay
-                $('.nova-mobile-menu-overlay').addClass('active');
-                $('body').addClass('mobile-menu-active');
-                console.log('Menu should be visible now');
-                
-                // Force display block before adding active class
+                // Primero establecer display block
                 $('.nova-mobile-menu-overlay').css('display', 'block');
                 
-                // Add a small delay for CSS transition to work properly
+                // Pequeño retraso para que el navegador procese el cambio de display
                 setTimeout(function() {
+                    // Luego añadir clase active para iniciar la animación
                     $('.nova-mobile-menu-overlay').addClass('active');
+                    $('body').addClass('mobile-menu-active');
+                    console.log('Menu should be visible now');
                 }, 10);
             } else {
-                // Hide menu overlay
+                // Quitar clase active para iniciar animación de cierre
                 $('.nova-mobile-menu-overlay').removeClass('active');
                 $('body').removeClass('mobile-menu-active');
                 
-                // Delay removing display to allow transition to complete
+                // Esperar a que termine la animación antes de ocultar
                 setTimeout(function() {
                     if (!$('.nova-mobile-menu-overlay').hasClass('active')) {
                         $('.nova-mobile-menu-overlay').css('display', '');
