@@ -135,16 +135,13 @@ body.page-template-template-dashboard {
     .dashboard-template .dashboard-content-row {
         height: auto;
     }
-    
     .dashboard-template .dashboard-card {
         max-height: none;
         overflow: visible;
     }
-    
     .dashboard-template .dashboard-card-body {
         overflow: visible;
     }
-    
     .ia-chat-template .ia-chat-content-row {
         min-height: auto;
     }
@@ -152,13 +149,15 @@ body.page-template-template-dashboard {
 
 @media (max-width: 991px) {
     .dashboard-template,.page-content{
-        overflow: hidden;
+        overflow: visible!important;
         min-height: calc(90vh - var(--bs-topbar-height))!important;
         margin-left: none!important;
         padding: 0 0rem!important;
+        max-height: none!important;
     }
     .page-content.dashboard-template{
         padding-right: calc(var(--bs-gutter-x) * .3)!important;
         padding-left: calc(var(--bs-gutter-x) * .25)!important;
+        max-height: none!important;
     }
 }
