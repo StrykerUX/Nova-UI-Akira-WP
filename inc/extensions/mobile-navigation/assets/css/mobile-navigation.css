@@ -48,8 +48,8 @@
     body.has-mobile-navigation .dashboard-overflow-template .page-container {
         width: 100% !important;
         max-width: 100% !important;
-        padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-left: 10px ;
+        padding-right: 10px ;
     }
     
     body.has-mobile-navigation .dashboard-content-col,
