@@ -30,8 +30,7 @@
     
     // Light/Dark mode toggle
     function initLightDarkMode() {
-        // Toggle function for switching themes
-        function toggleTheme() {
+        $('#light-dark-mode').on('click', function() {
             if ($('html').attr('data-bs-theme') === 'dark') {
                 $('html').attr('data-bs-theme', 'light');
                 window.config.theme = 'light';
@@ -42,36 +41,9 @@
                 document.cookie = "theme_mode=dark; path=/; SameSite=Strict";
             }
             
-            // Update icon appearance for both buttons
-            updateThemeIcons();
-            
             // Save configuration
             localStorage.setItem('__NOVA_CONFIG__', JSON.stringify(window.config));
-        }
-        
-        // Function to update the icons based on current theme
-        function updateThemeIcons() {
-            if ($('html').attr('data-bs-theme') === 'dark') {
-                $('#light-dark-mode i').removeClass('ti-moon').addClass('ti-sun');
-                $('#light-dark-mode-mobile i').removeClass('ti-moon').addClass('ti-sun');
-            } else {
-                $('#light-dark-mode i').removeClass('ti-sun').addClass('ti-moon');
-                $('#light-dark-mode-mobile i').removeClass('ti-sun').addClass('ti-moon');
-            }
-        }
-        
-        // Main theme toggle button
-        $('#light-dark-mode').on('click', function() {
-            toggleTheme();
         });
-        
-        // Mobile menu theme toggle button
-        $('#light-dark-mode-mobile').on('click', function() {
-            toggleTheme();
-        });
-        
-        // Initialize icon state
-        updateThemeIcons();
     }
     
     // Initialize theme
